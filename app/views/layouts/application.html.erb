@@ -8,14 +8,22 @@
   <%=render 'layouts/bootstrap' %>
 </head>
 <body>
-	<div align="center" style="text-align: center; background-image: url(http://web.ics.purdue.edu/~nschuma/pictures/ApptiTutor_banner_1.jpg); background-position: center; background-size:55%; background-repeat: no-repeat">
-  		<img src="http://web.ics.purdue.edu/~nschuma/pictures/ApptiTutor_logo_1.jpg" style="width:8%">
-  		<div style="color: #0AC6FF; text-shadow: 2px 0px black; font-size: 225%"><b>ApptiTutor</b></div>
-  		<div style="text-align:center">
-    	<i>Find a tutor that fits your needs anywhere, anytime with ApptiTutor!</i>
-  		</div>
-	</div>
-<%=render 'layouts/navbar' %>
-<%= yield %>
+  <div class="header">
+  	<div align="center" style="text-align: center; background-image: url(http://web.ics.purdue.edu/~nschuma/pictures/ApptiTutor_banner_1.jpg); background-position: center; background-size:55%; background-repeat: no-repeat">
+    		<img src="http://web.ics.purdue.edu/~nschuma/pictures/ApptiTutor_logo_1.jpg" style="width:8%">
+    		<div style="color: #0AC6FF; text-shadow: 2px 0px black; font-size: 225%"><b>ApptiTutor</b></div>
+    		<div style="text-align:center">
+      	<i>Find a tutor that fits your needs anywhere, anytime with ApptiTutor!</i>
+    		</div>
+  	</div>
+    <%=render 'layouts/navbar' %>
+  </div>
+  <div class="body">
+    <%= yield %>
+  </div>
+  <div class="footer">
+    <br><br><br><br>
+    <a href="/pages/Error">Don't click this</a>
+  </div>
 </body>
 </html>
