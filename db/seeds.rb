@@ -12,6 +12,8 @@ for r in responce["value"]
     s = "http://api.purdue.io/odata/Courses?$filter=Subject/Abbreviation eq '"
     s << r["Abbreviation"]
     s << "'&$orderby=Number asc"
+    s = URI.encode(s)
+    s = URI.parse(s)
     c = HTTParty.get(s)
     for v in c["value"]
         if v["Number"][0] != ""
