@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.2'
+ruby '2.1.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
@@ -30,7 +30,9 @@ gem 'pg', group: :production
 # gem 'bcrypt', '~> 3.1.7'
 # gem for Messiging
 gem "mailboxer"
-
+# bootstrap gems
+gem 'bootstrap-sass', '~> 3.2.0.2'
+gem 'autoprefixer-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
