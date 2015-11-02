@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026175206) do
+ActiveRecord::Schema.define(version: 20151102155343) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "subject"
@@ -103,6 +103,13 @@ ActiveRecord::Schema.define(version: 20151026175206) do
     t.boolean  "isStudent"
     t.string   "aboutMe"
     t.string   "gender"
+    t.string   "favoriteTutors"
+    t.string   "classes"
+    t.string   "price"
+    t.string   "ratings"
+    t.string   "reviews"
+    t.string   "skills"
+    t.datetime "birthday"
   end
 
   add_index "userlogins", ["email"], name: "index_userlogins_on_email", unique: true
