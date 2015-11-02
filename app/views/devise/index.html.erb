@@ -1,0 +1,11 @@
+<!-- Nick created this for testing searching. 
+	It might not be needed. -->
+	
+<p id="notice"><%= notice %></p>
+
+<h1>Listing UserLogins</h1>
+<% @userlogins = Userlogin.all %>
+<% @userlogins.each do |userlogin| %>
+  <%= userlogin.username =%>
+  <%= userlogin.email =%>
+<% end %>
