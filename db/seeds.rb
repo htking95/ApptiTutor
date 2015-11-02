@@ -8,7 +8,6 @@
 require 'httparty'
 responce = HTTParty.get("http://api.purdue.io/odata/Subjects")
 for r in responce["value"]
-    #puts r
     s = "http://api.purdue.io/odata/Courses?$filter=Subject/Abbreviation eq '"
     s << r["Abbreviation"]
     s << "'&$orderby=Number asc"
@@ -17,7 +16,10 @@ for r in responce["value"]
     c = HTTParty.get(s)
     for v in c["value"]
         if v["Number"][0] != ""
-            Course.create( "subject" => r["Abbreviation"], "course_Num" => v["Number"] )
+            number = v["Number"].to_i
+            if number < 45000
+                Course.create( "subject" => r["Abbreviation"], "course_Num" => v["Number"] )
+            end
         end
     end
 end
