@@ -15,5 +15,6 @@ class PagesController < ApplicationController
   end
 
   def User_Profile
+      @userlogins = Userlogin.find(params[:id])
   end
 end

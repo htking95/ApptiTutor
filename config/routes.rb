@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :courses
   resources :skills
   resources :users
+
   get 'pages/Search'
 
   get 'pages/Messaging'
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
 
   get 'pages/Profile_Setup'
 
-  get 'pages/User_Profile'
+  get 'pages/User_Profile/:id' => 'pages#User_Profile' , :id => 'id'
 
   root 'pages#Search'
 
