@@ -4,5 +4,6 @@ class UsersController < ApplicationController
   	end
   	
   	def show
+  		@userlogins = Userlogin.find(params[:id])
   	end
 end
