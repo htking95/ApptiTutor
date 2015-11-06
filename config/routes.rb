@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   get 'pages/Profile_Setup'
 
   get 'pages/User_Profile/:id' => 'pages#User_Profile' , :id => 'id'
+  
+  get 'ContactUs', to: 'helps#new', as: 'contact'
+
+  post 'ContactUs', to: 'helps#create'
 
   root 'pages#Search'
 
