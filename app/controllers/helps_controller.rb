@@ -8,7 +8,7 @@ class HelpsController < ApplicationController
     
     if @helpmessage.valid?
       HelpMailer.new_message(@helpmessage).deliver
-      redirect_to ContactUs_path, notice: "Your messages has been sent."
+      redirect_to contact_path, notice: "Your messages has been sent."
     else
       flash[:alert] = "An error occurred while delivering this message."
       render :new
