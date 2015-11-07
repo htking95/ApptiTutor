@@ -41,6 +41,7 @@
           <ul class="dropdown-menu">
             <% if userlogin_signed_in? %>
               <li><a href="/pages/Messaging">Messages</a></li>
+              <li><a href="/conversations/index">Messages TEMPORARY</a></li>
               <li><a href="/pages/Favorites">Favorites</a></li>
               <li><%= link_to "Edit Profile", edit_userlogin_registration_path %></li>
             <% end %> 

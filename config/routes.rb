@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :courses
   resources :skills
   resources :users
+  resources :conversations, only: [:index, :show, :destroy]
+  resources :messages, only: [:new, :create]
 
   get 'pages/Search'
 
