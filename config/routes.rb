@@ -10,15 +10,11 @@ Rails.application.routes.draw do
   resources :courses
   resources :skills
   resources :users
-<<<<<<< HEAD
-
-=======
   resources :userlogins do
     collection do 
       get 'search'
     end 
   end
->>>>>>> user_search
   get 'pages/Search'
 
   get 'pages/Messaging'
