@@ -5,11 +5,8 @@ class UserloginsController < ApplicationController
   	end
 
   	def show
-<<<<<<< HEAD
   		@userlogins = Userlogin.find(params[:id])
-=======
   		super
->>>>>>> user_search
   	end
 
   	def search
