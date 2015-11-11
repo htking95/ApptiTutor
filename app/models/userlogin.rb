@@ -7,6 +7,9 @@ class Userlogin < ActiveRecord::Base
 
 <<<<<<< HEAD
   after_create :send_admin_mail
+  
+  ratyrate_rater
+  ratyrate_rateable 'overall', 'clarity', 'knowledge', 'politeness', 'flexibility'
 
   def send_admin_mail
     UserMailer.welcome_email(self).deliver

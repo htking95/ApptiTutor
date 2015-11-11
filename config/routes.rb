@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/rate' => 'rater#create', :as => 'rate'
   #devise_for :userlogins, :controllers => {:registrations => "registrations"}
   devise_for :userlogins, :controllers => {:userlogins => "userlogins"} do
    # collection do
