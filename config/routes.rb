@@ -1,10 +1,23 @@
 Rails.application.routes.draw do
   #devise_for :userlogins, :controllers => {:registrations => "registrations"}
-  devise_for :userlogins
+  devise_for :userlogins, :controllers => {:userlogins => "userlogins"} do
+   # collection do
+   #   get 'search'
+   # end
+  end
+  #devise_for :userlogins
   resources :courses
   resources :skills
   resources :users
+<<<<<<< HEAD
 
+=======
+  resources :userlogins do
+    collection do 
+      get 'search'
+    end 
+  end
+>>>>>>> user_search
   get 'pages/Search'
 
   get 'pages/Messaging'
