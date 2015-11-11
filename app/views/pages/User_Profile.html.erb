@@ -1,3 +1,6 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag 'jquery.raty.js','ratyrate.js'%>
+<% end %> 
 
 <p id="notice"><%= notice %></p>
 
@@ -91,7 +94,4 @@
 	<string>Birthday:</strong>
 	<%= @userlogins.birthday %>
 </p>
-<% content_for :javascript_includes do %>
-  <%= javascript_include_tag 'jquery.raty.js','ratyrate.js'%>
-<% end %> 
 
