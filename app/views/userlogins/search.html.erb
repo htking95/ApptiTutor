@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Search Results AFTER the fuckup</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Email</th>
+      <th>Istutor</th>
+      <th>Recievereminders</th>
+      <th>Profilepicture</th>
+      <th>Passwordrecoverquestion1</th>
+      <th>Passwordrecoverquestion2</th>
+      <th>Passwordrecoveranswer1</th>
+      <th>Passwordrecoveranswer2</th>
+      <th>Isstudent</th>
+      <th>Aboutme</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @userlogins.each do |userlogin| %>
+      <tr>
+        <td><%= userlogin.email %></td>
+        <td><%= userlogin.isTutor %></td>
+        <td><%= userlogin.profilePicture %></td>
+        <td><%= userlogin.isStudent %></td>
+        <td><%= userlogin.aboutMe %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>
