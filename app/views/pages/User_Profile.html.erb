@@ -1,3 +1,7 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag 'jquery.raty.js','ratyrate.js'%>
+<% end %> 
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -37,7 +41,43 @@
 
 <p>
 	<string>Ratings:</strong>
-	<%= @userlogins.ratings %>
+	<div class="row">
+  		<div class="small-2 large-2 columns">
+    		<%= imdb_style_rating_for @userlogins, current_userlogin%>
+  		</div>
+  		<br>
+  		<div style="margin-left: 100px" class="small-2 large-4 columns">
+    		<% if current_userlogin %>
+    			RIP: <%= rating_for_user @userlogins, current_userlogin, "RIP" %>
+      			Overall: <%= rating_for @userlogins, "overall", disable_after_rate: true,
+      				imdb_avg: true, 
+      				enable_half: true, 
+      				cancel_hint: 'Cancel this vote!'%>
+      			<br>
+      			Clarity: <%= rating_for @userlogins, "clarity", disable_after_rate: true, 
+      				imdb_avg: true,
+      				enable_half: true, 
+      				cancel_hint: 'Cancel this vote!' %>
+      			<br>
+      			Knowledge: <%= rating_for @userlogins, "knowledge",
+      				disable_after_rate: true, 
+      				imdb_avg: true,
+      				enable_half: true, 
+      				cancel_hint: 'Cancel this vote!' %>
+      			<br>
+      			Politeness: <%= rating_for @userlogins, "politeness", disable_after_rate: true, 
+      				imdb_avg: true,
+      				enable_half: true, 
+      				cancel_hint: 'Cancel this vote!' %>
+      			<br>
+      			Flexibility: <%= rating_for @userlogins, "flexibility", disable_after_rate: true,
+      				imdb_avg: true, 
+      				enable_half: true,
+      				cancel_hint: 'Cancel this vote!' %>
+    		<% end %>
+  		</div>
+	</div>
+
 </p>
 
 <p>
