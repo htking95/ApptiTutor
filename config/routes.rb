@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  post '/rate' => 'rater#create', :as => 'rate'
+  
   #devise_for :userlogins, :controllers => {:registrations => "registrations"}
   devise_for :userlogins, :controllers => {:userlogins => "userlogins"} do
    # collection do
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       get 'search'
     end 
   end
-  get 'pages/Search'
+  get 'pages/Home'
 
   get 'pages/Messaging'
 
@@ -30,8 +30,10 @@ Rails.application.routes.draw do
   get 'ContactUs', to: 'helps#new', as: 'contact'
 
   post 'ContactUs', to: 'helps#create'
+  
+  post '/rate' => 'rater#create', :as => 'rate'
 
-  root 'pages#Search'
+  root 'pages#Home'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
