@@ -11,7 +11,7 @@ class UserloginsController < ApplicationController
 
   	def search
   		if params[:search].present?
-  			@userlogins = Userlogin.search(params[:search])
+  			@userlogins = Userlogin.search params[:search], fields:[{aboutMe: :word_start}, {email: :word_start}]
   		else
   			@userlogins = Userlogin.all
   		end

@@ -1,7 +1,13 @@
 class Userlogin < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  searchkick
+  searchkick word_start: [:aboutMe, :email]
+  def search_data 
+    {
+    email: email,
+    aboutMe: aboutMe
+  }
+end
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
