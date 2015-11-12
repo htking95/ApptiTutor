@@ -1,17 +1,27 @@
-<%= form_for @helpmessage, url: contact_path do |message_form| %>
-  <fieldset>
-    <div class="field">
-      <%= message_form.text_field :subject, placeholder: "Subject" %>
-    </div>
+<header>
+  <div class="jumbotron">
+      <h1>Contact the Developers</h1> 
+      <p>Comments, questions, concerns, and anything you'd like to send us goes here!<br>Expect a response from apptitutordevs@gmail.com</p> 
+  </div>
+</header>
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3 text-center">
+  <%= form_for @helpmessage, url: contact_path do |message_form| %>
+    <fieldset>
+      <div class="field">
+        <%= message_form.text_field :subject, placeholder: "Subject", class: "form-control" %>
+      </div>
+      
+      <div class="field">
+        <%= message_form.text_area :content,style: "margin-top: 10px", placeholder: "Message", id: "comment", rows: 5, class: "form-control"%>
+      </div>
+    </fieldset>
     
-    <div class="field">
-      <%= message_form.text_area :content, placeholder: "Message"%>
-    </div>
-  </fieldset>
-  
-  <fieldset>
-    <div class="field">
-      <%= message_form.submit "Send" %>
-    </div>
-  </fieldset>
-<% end %>
+    <fieldset>
+      <div style="margin-top: 10px" class="field col-lg-offset-0 text-left">
+        <%= message_form.submit "Send", class: "btn btn-default" %>
+      </div>
+    </fieldset>
+  <% end %>
+  </div>
+</div>
