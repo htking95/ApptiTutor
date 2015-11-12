@@ -1,3 +1,6 @@
+<head>
+<%= csrf_meta_tag %>
+</head>
 <% content_for :javascript_includes do %>
   <%= javascript_include_tag 'jquery.raty.js','ratyrate.js'%>
 <% end %> 
@@ -6,71 +9,71 @@
 
 <p>
   <strong>Email:</strong>
-  <%= @userlogins.email %>
+  <%= @userprofile.email %>
 </p>
 
 <p>
   <strong>Istutor:</strong>
-  <%= @userlogins.isTutor %>
+  <%= @userprofile.isTutor %>
 </p>
 
 <p>
   <strong>Isstudent:</strong>
-  <%= @userlogins.isStudent %>
+  <%= @userprofile.isStudent %>
 </p>
 
 <p>
   <strong>Aboutme:</strong>
-  <%= @userlogins.aboutMe %>
+  <%= @userprofile.aboutMe %>
 </p>
 
 <p>
 	<strong>Gender:</strong>
-	<%= @userlogins.gender %>
+	<%= @userprofile.gender %>
 </p>
 
 <p>
 	<strong>Classes:</strong>
-	<%= @userlogins.classes %>
+	<%= @userprofile.classes %>
 </p>
 
 <p>
 	<string>Prices:</strong>
-	<%= @userlogins.price %>
+	<%= @userprofile.price %>
 </p>
 
 <p>
 	<string>Ratings:</strong>
 	<div class="row">
   		<div class="small-2 large-2 columns">
-    		<%= imdb_style_rating_for @userlogins, current_userlogin%>
+    		<%= imdb_style_rating_for @userprofile, current_userlogin%>
   		</div>
   		<br>
   		<div style="margin-left: 100px" class="small-2 large-4 columns">
     		<% if current_userlogin %>
-    			RIP: <%= rating_for_user @userlogins, current_userlogin, "RIP" %>
-      			Overall: <%= rating_for @userlogins, "overall", disable_after_rate: true,
+    			RIP: <%= rating_for_user @userprofile, current_userlogin, "RIP" %>
+      			Overall: <%= rating_for @userprofile, "overall", disable_after_rate: true,
       				imdb_avg: true, 
       				enable_half: true, 
       				cancel_hint: 'Cancel this vote!'%>
       			<br>
-      			Clarity: <%= rating_for @userlogins, "clarity", disable_after_rate: true, 
+      			Clarity: <%= rating_for @userprofile, "clarity", disable_after_rate: true, 
       				imdb_avg: true,
       				enable_half: true, 
       				cancel_hint: 'Cancel this vote!' %>
       			<br>
-      			Knowledge: <%= rating_for @userlogins, "knowledge",
+      			Knowledge: <%= rating_for @userprofile, "knowledge",
       				disable_after_rate: true, 
       				imdb_avg: true,
       				enable_half: true, 
       				cancel_hint: 'Cancel this vote!' %>
       			<br>
-      			Politeness: <%= rating_for @userlogins, "politeness", disable_after_rate: true, 
+      			Politeness: <%= rating_for @userprofile, "politeness", disable_after_rate: true, 
       				imdb_avg: true,
       				enable_half: true, 
       				cancel_hint: 'Cancel this vote!' %>
       			<br>
-      			Flexibility: <%= rating_for @userlogins, "flexibility", disable_after_rate: true,
+      			Flexibility: <%= rating_for @userprofile, "flexibility", disable_after_rate: true,
       				imdb_avg: true, 
       				enable_half: true,
       				cancel_hint: 'Cancel this vote!' %>
@@ -82,16 +85,16 @@
 
 <p>
 	<string>Reviews:</strong>
-	<%= @userlogins.reviews %>
+	<%= @userprofile.reviews %>
 </p>
 
 <p>
 	<string>Skills:</strong>
-	<%= @userlogins.skills %>
+	<%= @userprofile.skills %>
 </p>
 
 <p>
 	<string>Birthday:</strong>
-	<%= @userlogins.birthday %>
+	<%= @userprofile.birthday %>
 </p>
 
