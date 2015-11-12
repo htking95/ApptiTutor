@@ -1,4 +1,6 @@
-<h1>SEARCH WORKED!!!!!</h1>
+<p id="notice"><%= notice %></p>
+
+<h1>Search Results AFTER the fuckup</h1>
 
 <table>
   <thead>
@@ -24,15 +26,14 @@
       <tr>
         <td><%= userlogin.email %></td>
         <td><%= userlogin.isTutor %></td>
-        <td><%= userlogin.recieveReminders %></td>
         <td><%= userlogin.profilePicture %></td>
-        <td><%= userlogin.passwordRecoverQuestion1 %></td>
-        <td><%= userlogin.passwordRecoverQuestion2 %></td>
-        <td><%= userlogin.passwordRecoverAnswer1 %></td>
-        <td><%= userlogin.passwordRecoverAnswer2 %></td>
         <td><%= userlogin.isStudent %></td>
         <td><%= userlogin.aboutMe %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>
