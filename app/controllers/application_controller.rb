@@ -8,10 +8,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
 
-  protect_from_forgery with: :exception
-
+  #protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
   before_filter :configure_permitted_parameters, if: :devise_controller?
-
+  skip_before_filter :verify_authenticity_token
   protected
 
     def configure_permitted_parameters
