@@ -37,6 +37,7 @@ gem 'autoprefixer-rails'
 gem 'ratyrate'
 gem 'execjs'
 gem 'therubyracer'
+gem 'searchkick'
 # Use Unicorn as the app server
 # gem 'unicorn'
 # Use Capistrano for deployment
