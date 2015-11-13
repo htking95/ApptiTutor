@@ -7,62 +7,94 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @userprofile.email %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <p>
+        <strong>Email:</strong>
+        <%= @userprofile.email %>
+      </p>
 
-<p>
-  <strong>Istutor:</strong>
-  <%= @userprofile.isTutor %>
-</p>
+      <p>
+        <strong>Istutor:</strong>
+        <%= @userprofile.isTutor %>
+      </p>
 
-<p>
-  <strong>Isstudent:</strong>
-  <%= @userprofile.isStudent %>
-</p>
+      <p>
+        <strong>Isstudent:</strong>
+        <%= @userprofile.isStudent %>
+      </p>
 
-<p>
-  <strong>Aboutme:</strong>
-  <%= @userprofile.aboutMe %>
-</p>
+      <p>
+        <strong>Aboutme:</strong>
+        <%= @userprofile.aboutMe %>
+      </p>
 
-<p>
-	<strong>First Name:</strong>
-	<%= @userprofile.first %>
-</p>
+      <p>
+      	<strong>First Name:</strong>
+      	<%= @userprofile.first %>
+      </p>
 
-<p>
-	<strong>Last Name:</strong>
-	<%= @userprofile.last %>
-</p>
+      <p>
+      	<strong>Last Name:</strong>
+      	<%= @userprofile.last %>
+      </p>
 
-<p>
-	<strong>Gender:</strong>
-	<%= @userprofile.gender %>
-</p>
+      <p>
+      	<strong>Gender:</strong>
+      	<%= @userprofile.gender %>
+      </p>
 
-<p>
-	<strong>Classes:</strong>
-	<%= @userprofile.classes %>
-</p>
+      <p>
+      	<strong>Classes:</strong>
+      	<%= @userprofile.classes %>
+      </p>
 
-<p>
-  <strong>Skills:</strong>
-  <%= @userprofile.skills %>
-</p>
+      <p>
+        <strong>Skills:</strong>
+        <%= @userprofile.skills %>
+      </p>
 
-<p>
-	<strong>Prices:</strong>
-	<%= @userprofile.price %>
-</p>
+      <p>
+      	<strong>Prices:</strong>
+      	<%= @userprofile.price %>
+      </p>
 
-<p>
-	<strong>Ratings:</strong>
-  		<div>
-    		<%= imdb_style_rating_for @userprofile, current_userlogin%>
+      <p>
+      	<strong>Ratings:</strong>
+      </p>
+    </div>
+
+    <div class="col-xs-6">
+        <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
+        <div class="form-group">
+          <%= f.label :recipients %>
+          <%= f.text_field :recipients, :readonly => true , :value =>  @userprofile.email, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :subject %>
+          <%= f.text_field :subject, placeholder: "I'd like you to tutor me!", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :message %>
+          <%= f.text_area :body, class: 'form-control',placeholder: "I need help with this class, this class, and this class. When would you be free to help?", rows: 4  %>
+        </div>
+        <%= f.submit "Send Message", class: "btn btn-success" %>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  		<div class="row">
+        <div class="col-xs-0 center-block">
+        </div>
+        <div class="col-xs-2">
+          <%= imdb_style_rating_for @userprofile, current_userlogin%>
+        </div>
   		</div>
-  		<br>
+</div>
+
     		<% if current_userlogin %>
         <div class="container">
           <div class = "row">
@@ -116,7 +148,9 @@
         </div>
     		<% end %>
 
-</p>
+
+
+
 
   <p>
     <strong>Reviews:</strong>
