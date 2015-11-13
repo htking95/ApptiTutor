@@ -1,0 +1,42 @@
+<h1>Search is kindof working</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Email</th>
+      <th>Istutor</th>
+      <th>Recievereminders</th>
+      <th>Profilepicture</th>
+      <th>Passwordrecoverquestion1</th>
+      <th>Passwordrecoverquestion2</th>
+      <th>Passwordrecoveranswer1</th>
+      <th>Passwordrecoveranswer2</th>
+      <th>Isstudent</th>
+      <th>Aboutme</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @userslogins.each do |userlogin| %>
+      <tr>
+        <td><%= userlogin.username %></td>
+        <td><%= userlogin.password %></td>
+        <td><%= userlogin.email %></td>
+        <td><%= userlogin.isTutor %></td>
+        <td><%= userlogin.recieveReminders %></td>
+        <td><%= userlogin.profilePicture %></td>
+        <td><%= userlogin.passwordRecoverQuestion1 %></td>
+        <td><%= userlogin.passwordRecoverQuestion2 %></td>
+        <td><%= userlogin.passwordRecoverAnswer1 %></td>
+        <td><%= userlogin.passwordRecoverAnswer2 %></td>
+        <td><%= userlogin.isStudent %></td>
+        <td><%= userlogin.aboutMe %></td>
+        <td><%= link_to 'Show', userlogin %></td>
+        <td><%= link_to 'Edit', edit_userlogin_path(userlogin) %></td>
+        <td><%= link_to 'Destroy', userlogin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

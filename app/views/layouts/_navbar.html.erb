@@ -35,12 +35,12 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <span class="glyphicon glyphicon-user"></span>
                   Profile
-              <span style="margin-left:5px;" class="badge">0</span>
+              <span style="margin-left:5px;" class="badge"><%=unread_messages_count%></span>
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
               <% if userlogin_signed_in? %>
-                <li><a href="/pages/Messaging">Messages<span class="glyphicon pull-right glyphicon-envelope"></span></a></li>
+                <li><a href="/mailbox/inbox">Messages<span class="glyphicon pull-right glyphicon-envelope"></span></a></li> 
                 <li><a href="/pages/Favorites">Favorites<span class="glyphicon pull-right glyphicon-star-empty"></span></a></li>
                 <li><a href="/userlogins/edit">Edit Profile<span class="glyphicon pull-right glyphicon-pencil"></span></a></li>
               <% end %> 

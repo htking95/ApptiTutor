@@ -11,10 +11,12 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require chosen
  *= require_self
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+<<<<<<< HEAD
 
 .round-image-50 {
     background-color: white;
@@ -28,3 +30,6 @@
     text-align: center;
     img { width: 100% }
 }
+=======
+@import 'bootstrap/theme';
+>>>>>>> 6dde5f0b3eb0aca567d53cfa1b88bd4fc49b4c3b

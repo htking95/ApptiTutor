@@ -1,13 +1,12 @@
 <!-- TO ENABLE SEARCH, run this command: rake searchkick:reindex CLASS=Userlogin -->
 <p id="notice"><%= notice %></p>
 
-<h1>Search Results AFTER the fuckup</h1>
-
 <table class="table table-responsive">
   <thead>
     <tr>
       <th></th>
-      <th>Username</th>
+      <th>Name</th>
+      <th>Email</th>
       <th>Classes</th>
       <th>Skills</th>
       <th>Aboutme</th>
@@ -19,6 +18,7 @@
     <% @userlogins.each do |userlogin| %>
       <tr>
         <td><a href="../pages/User_Profile/<%= userlogin.id %>">Profile Link</a></td>
+        <td><p style="text-transform:capitalize;"><%= userlogin.first %> <%= userlogin.last %></p></td>
         <td><%= userlogin.email %></td>
         <td><%= userlogin.classes %></td>
         <td><%= userlogin.skills %></td>

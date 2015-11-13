@@ -6,12 +6,25 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user
+  helper_method :mailbox, :conversation
 
 
   #protect_from_forgery with: :exception
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
   skip_before_filter :verify_authenticity_token
+
+  
+  private
+
+  def mailbox
+    @mailbox ||= current_userlogin.mailbox
+  end
+
+def conversation
+    @conversation ||= mailbox.conversations.find(params[:id])
+  end
+
   protected
 
     def configure_permitted_parameters
