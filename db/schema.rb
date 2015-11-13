@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112211457) do
+ActiveRecord::Schema.define(version: 20151113080246) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -155,6 +155,10 @@ ActiveRecord::Schema.define(version: 20151112211457) do
     t.datetime "birthday"
     t.string   "first"
     t.string   "last"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "userlogins", ["email"], name: "index_userlogins_on_email", unique: true

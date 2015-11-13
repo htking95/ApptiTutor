@@ -29,6 +29,8 @@
       <ul class="nav navbar-nav navbar-right">
         <!-- Only show the Profile menu when logged in -->
         <% if userlogin_signed_in? %>
+          <li class="round-image-50"><%= image_tag(current_userlogin.avatar.url(:thumb)) %></li>
+
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <span class="glyphicon glyphicon-user"></span>

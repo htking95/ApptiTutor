@@ -7,7 +7,7 @@ class Userlogin < ActiveRecord::Base
     email: email,
     aboutMe: aboutMe
   }
-end
+  end
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -16,6 +16,9 @@ end
 
   ratyrate_rateable 'overall', 'clarity', 'knowledge', 'politeness', 'flexibility'
   ratyrate_rater
+
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#" }, :default_url => "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   
   def send_admin_mail
     UserMailer.welcome_email(self).deliver
