@@ -38,7 +38,8 @@
             </a>
             <ul class="dropdown-menu">
               <% if userlogin_signed_in? %>
-                <li><a href="/pages/Messaging">Messages<span class="glyphicon pull-right glyphicon-envelope"></span></a></li>
+                <li><a href="/pages/Messaging">Messages<span class="glyphicon pull-right glyphicon-envelope"></span></a></li>                
+                <li><%= link_to "My Inbox", mailbox_inbox_path %></li>
                 <li><a href="/pages/Favorites">Favorites<span class="glyphicon pull-right glyphicon-star-empty"></span></a></li>
                 <li><a href="/userlogins/edit">Edit Profile<span class="glyphicon pull-right glyphicon-pencil"></span></a></li>
               <% end %> 
