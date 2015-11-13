@@ -37,11 +37,15 @@
       <%= f.text_field :gender, autocomplete: "off", class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :is_Tutor %>
+      <%= f.label :is_Tutor %><br>
       <%= f.check_box :isTutor, autocomplete: "off" %>
     </div>
     <div class="form-group">
-      <%= f.label :recieveReminders %>
+      <%= f.label :is_Student %><br>
+      <%= f.check_box :isStudent, autocomplete: "off" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :recieveReminders %><br>
       <%= f.check_box :recieveReminders, autocomplete: "off" %>
     </div>
     <div class="form-group">
@@ -65,10 +69,6 @@
       <%= f.text_field :passwordRecoverAnswer2, autocomplete: "off", class: "form-control"  %>
     </div>
     <div class="form-group">
-      <%= f.label :is_Student %><br />
-      <%= f.check_box :isStudent, autocomplete: "off" %>
-    </div>
-    <div class="form-group">
       <%= f.label :about_Me %><br />
       <%= f.text_field :aboutMe, autocomplete: "off", class: "form-control" %>
     </div>
@@ -85,24 +85,14 @@
       <%= f.text_field :price, autocomplete: "off", class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :gender %><br />
-      <%= f.text_field :gender, autocomplete: "off", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :ratings %><br />
-      <%= f.text_field :ratings, autocomplete: "off", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :reviews %><br />
-      <%= f.text_field :reviews, autocomplete: "off", class: "form-control" %>
-    </div>
-    <div class="form-group">
       <%= f.label :skills %><br />
       <%= f.text_field :skills, autocomplete: "off", class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :birthday %><br />
-      <%= f.date_select :birthday, autocomplete: "off", class: "form-control" %>
+      <%= f.label :birthday %>
+      <div class ="row">
+      <%= f.date_select :birthday, { :start_year => 1920, :end_year => 2015 },prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, autocomplete: "off", class: "form-control" %>
+      </div>
     </div>
 
   <div class="form-group">
