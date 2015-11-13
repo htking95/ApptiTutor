@@ -48,48 +48,73 @@
 </p>
 
 <p>
+  <string>Skills:</strong>
+  <%= @userprofile.skills %>
+</p>
+
+<p>
 	<string>Prices:</strong>
 	<%= @userprofile.price %>
 </p>
 
 <p>
 	<string>Ratings:</strong>
-	<div class="row">
-  		<div class="small-2 large-2 columns">
+  		<div>
     		<%= imdb_style_rating_for @userprofile, current_userlogin%>
   		</div>
   		<br>
-  		<div style="margin-left: 100px" class="small-2 large-4 columns">
     		<% if current_userlogin %>
-    			RIP: <%= rating_for_user @userprofile, current_userlogin, "RIP" %>
-      			Overall: <%= rating_for @userprofile, "overall", disable_after_rate: true,
-      				imdb_avg: true, 
-      				enable_half: true, 
-      				cancel_hint: 'Cancel this vote!'%>
-      			<br>
-      			Clarity: <%= rating_for @userprofile, "clarity", disable_after_rate: true, 
-      				imdb_avg: true,
-      				enable_half: true, 
-      				cancel_hint: 'Cancel this vote!' %>
-      			<br>
-      			Knowledge: <%= rating_for @userprofile, "knowledge",
-      				disable_after_rate: true, 
-      				imdb_avg: true,
-      				enable_half: true, 
-      				cancel_hint: 'Cancel this vote!' %>
-      			<br>
-      			Politeness: <%= rating_for @userprofile, "politeness", disable_after_rate: true, 
-      				imdb_avg: true,
-      				enable_half: true, 
-      				cancel_hint: 'Cancel this vote!' %>
-      			<br>
-      			Flexibility: <%= rating_for @userprofile, "flexibility", disable_after_rate: true,
-      				imdb_avg: true, 
-      				enable_half: true,
-      				cancel_hint: 'Cancel this vote!' %>
+        <div class="container">
+          <div class = "row">
+            <div class="col-sm-3">
+        			Clarity: <%= rating_for @userprofile, "clarity", disable_after_rate: true, 
+        				imdb_avg: true,
+        				enable_half: true, 
+        				cancel_hint: 'Cancel this vote!' %>
+        			
+            </div>
+            <div class="col-sm-9" style="display: inline-block; vertical-align: middle; float: none;">
+              <p class="lead"> Clarity: How well was your tutor able to relay information? </p>
+            </div>
+          </div>
+          <div class = "row">
+            <div class="col-sm-3">
+        			Knowledge: <%= rating_for @userprofile, "knowledge",
+        				disable_after_rate: true, 
+        				imdb_avg: true,
+        				enable_half: true, 
+        				cancel_hint: 'Cancel this vote!' %>
+        			
+            </div>
+            <div class="col-sm-9">
+                <p class="lead"> Knowledge: How well did your tutor know the information? </p>
+            </div>
+          </div>
+          <div class = "row">
+            <div class="col-sm-3">
+        			Politeness: <%= rating_for @userprofile, "politeness", disable_after_rate: true, 
+        				imdb_avg: true,
+        				enable_half: true, 
+        				cancel_hint: 'Cancel this vote!' %>
+        			
+            </div>
+            <div class="col-sm-9">
+                <p class="lead"> Politeness: How well did the tutor treat you? </p>
+            </div>
+          </div>
+          <div class = "row">
+            <div class="col-sm-3">
+        			Flexibility: <%= rating_for @userprofile, "flexibility", disable_after_rate: true,
+        				imdb_avg: true, 
+        				enable_half: true,
+        				cancel_hint: 'Cancel this vote!' %>
+            </div>
+            <div class="col-sm-9">
+                <p class="lead"> Flexibility: How well was your tutor able to work around your schedule? </p>
+            </div>
+          </div>
+        </div>
     		<% end %>
-  		</div>
-	</div>
 
 </p>
 
@@ -98,13 +123,5 @@
 	<%= @userprofile.reviews %>
 </p>
 
-<p>
-	<string>Skills:</strong>
-	<%= @userprofile.skills %>
-</p>
 
-<p>
-	<string>Birthday:</strong>
-	<%= @userprofile.birthday %>
-</p>
 
