@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   resources :courses
   resources :skills
   resources :users
-  resources :conversations, only: [:index, :show, :destroy]
+  resources :conversations, only: [:index, :show, :destroy] do
+    member do
+     post :reply
+    end
+  end
   resources :messages, only: [:new, :create]
 
   get 'pages/Search'
