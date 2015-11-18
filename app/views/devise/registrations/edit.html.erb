@@ -76,6 +76,8 @@
       <%= f.label :favorite_Tutors %><br />
       <%= f.text_field :favoriteTutors, autocomplete: "off", class: "form-control" %>
     </div>
+
+<% if current_userlogin.isTutor == true %>
     <div class="form-group">
       <%= f.label :classes %><br />
       <%= f.text_field :classes, autocomplete: "off", class: "form-control" %>
@@ -88,6 +90,8 @@
       <%= f.label :skills %><br />
       <%= f.text_field :skills, autocomplete: "off", class: "form-control" %>
     </div>
+<% end %>
+
     <div class="form-group">
       <%= f.label :birthday %>
       <div class ="row">
