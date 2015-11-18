@@ -45,6 +45,8 @@
       	<%= @userprofile.gender %>
       </p>
 
+<% if @userprofile.isTutor %>
+
       <p>
       	<strong>Classes:</strong>
       	<%= @userprofile.classes %>
@@ -64,6 +66,8 @@
       	<strong>Ratings:</strong>
       </p>
     </div>
+  <% end %>
+
 
     <div class="col-xs-6">
         <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
@@ -94,6 +98,9 @@
         </div>
   		</div>
 </div>
+
+<% if @userprofile.isTutor %>
+
 
     		<% if current_userlogin %>
         <div class="container">
@@ -158,5 +165,8 @@
         <%= r[:review] %>
       <% end %>
   </p>
+
+<% end %>
+
 </div>
 
