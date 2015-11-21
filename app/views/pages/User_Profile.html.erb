@@ -147,14 +147,18 @@
         </div>
     		<% end %>
 
+<h3>Reviews</h3>
+<% @userreviews.each do |r| %>
+  <div>
+    <strong><%= r.name %></strong>
+    <br />
+    <p><%= r.body %></p>
+    <p><%= link_to 'Delete', userreviews_path(userreviews), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
+<% end %>
+<%= render 'userreviews/form' %>
 
 
-
-
-<p>
-	<string>Reviews:</strong>
-	<%= @userprofile.reviews %>
-</p>
 
 
 
