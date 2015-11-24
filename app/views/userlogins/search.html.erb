@@ -1,33 +1,62 @@
 <!-- TO ENABLE SEARCH, run this command: rake searchkick:reindex CLASS=Userlogin -->
-<p id="notice"><%= notice %></p>
 
-<table class="table table-responsive">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Classes</th>
-      <th>Skills</th>
-      <th>Aboutme</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<head>
+<style>
+  th {
+    color: black;
+    text-align:center;
+  }
+</style>
+</head>
+<body style="background-color: #363636">
+<div style="margin:25px">
+  <div class="panel panel-default">
+    <!-- Panel contents -->
+    <div class="panel-heading" align="center" style="font-size:xx-large; background-color:#00A6DE; color: white; text-shadow: 2px 2px black">Search Results</div>
+    <div class="panel-body" style="background-color:#575757; border:1">
+      <p align="center" style="font-size: large; color:#00A6DE ">Find your the perfect tutor to match your schooling needs! Search above by class, name, email address, or skills!<br>
+      It's time to get ahead of the workload. We are here to help!</p>
+    </div>
+    <div style="background-color: #575757; text-align:center; color:#00A6DE">
+      <div style="border-style: solid; border-width: 5px; border-color: black; margin: 0px 20px 0px 20px">
+        THIS IS GOING TO BE THE FILTER CONTAINER<br>
+        You will be able to apply filters to narrow your search
+      </div>
+    </div>
 
-  <tbody>
-    <% @userlogins.each do |userlogin| %>
-      <tr>
-        <td><a href="../pages/User_Profile/<%= userlogin.id %>">Profile Link</a></td>
-        <td><p style="text-transform:capitalize;"><%= userlogin.first %> <%= userlogin.last %></p></td>
-        <td><%= userlogin.email %></td>
-        <td><%= userlogin.classes %></td>
-        <td><%= userlogin.skills %></td>
-        <td><%= userlogin.aboutMe %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <!-- Table -->
+    <div class="table-responsive" align="center" style="text-align:center">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Classes</th>
+            <th>Skills</th>
+            <th>Bio</th>
+          </tr>
+        </thead>
 
-<br>
+        <tbody>
+          <% @userlogins.each do |userlogin| %>
+            <tr>
+              <% if userlogin.first? %>
+                <td><a href="../pages/User_Profile/<%= userlogin.id %>" style="text-transform:capitalize;"><%= userlogin.first %> <%= userlogin.last %></a></td>
+                <% else %>
+                  <td><a href="../pages/User_Profile/<%= userlogin.id %>" style="">n/a<br>Click here to check out their profile!</a></td>
+              <% end %>
+              <td><%= userlogin.email %></td>
+              <td><%= userlogin.classes %></td>
+              <td><%= userlogin.skills %></td>
+              <td><%= userlogin.aboutMe %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
 
-<%= link_to 'New User', new_user_path %>
+
+

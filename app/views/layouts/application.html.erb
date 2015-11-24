@@ -10,19 +10,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ApptiTutor</title>
 </head>
-<body>
+<body style="background-color:; color: #00A6DE">
   <div class="header">
-    <%=render 'layouts/navbar' %>
+    <%=render 'layouts/navbar' unless @disable_nav %>
   </div>
   <div class="body">
     <%= yield %>
   </div>
-  <div class="footer">
-    <br><br><br><br>
-    <a href="/pages/Error">Don't click this</a>
+  <%=render 'layouts/footer' unless @disable_nav %>
+  <!--<div class="footer">
     <div>
-      Questions? --> <a href = "/ContactUs">Contact us</a>
+      <br>
+      <div align="center" style="color:#00A6DE; font-size: large">
+          Have questions? Check out our <a href="/ContactUs" style="color:white; text-decoration:underline">FAQ!</a><br>
+          If you still have questions, <a href="/ContactUs" style="color:white; text-decoration:underline">Contact Us!</a>
+      </div>
     </div>
-  </div>
+  </div>-->
 </body>
 </html>
