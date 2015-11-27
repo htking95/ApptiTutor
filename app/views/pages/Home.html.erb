@@ -84,30 +84,26 @@
       <div class="" align="center" style="text-align: center;">
         <div align="right">
           <% if userlogin_signed_in? %>
-            <%= link_to "Sign out", destroy_userlogin_session_path %>
+            <%= link_to "Sign out", destroy_userlogin_session_path, style:"color: #208AD6; text-shadow: 1px 1px 3px white; font-size: 130%; margin-right: 15px" %>
           <% else %>
             <%= link_to "Sign up", new_userlogin_registration_path, style:"color: #208AD6; text-shadow: 1px 1px 3px white; font-size: 130%; margin-right: 15px" %>
             <%= link_to "Sign in", new_userlogin_session_path, style:"color: #208AD6; text-shadow: 1px 1px 3px white; font-size: 130%; margin-right: 15px" %>
           <% end %> 
         </div>
 
-        <img src="http://web.ics.purdue.edu/~nschuma/pictures/ApptiTutor_logo_1.jpg" style="width:175px">
+        <img src="http://web.ics.purdue.edu/~nschuma/pictures/apptitutor_logo_2.png" style="width:100px">
         
         <h1 style="color: #208AD6; text-shadow: 3px 2px 3px black; font-size:400%"><b>ApptiTutor</b></h1>
 
         <div style="text-align: center; font-size: x-large; text-shadow: 1px 1px 2px black; color: #208AD6">
         <i>Find a tutor that fits your needs anywhere, anytime!</i></div>
         
-        <div class="mysearchbar" align="center" style="">
+        <div class="" align="center" style="margin-top: 20px; margin-right: 15%; margin-left: 15%">
           <%= form_tag search_userlogins_path, method: :get, class: "", role: "search" do %>
             <p>
               <%= text_field_tag :search, params[:search], autofocus: true,  placeholder:"Search for a class, a skill, or a tutor by name!", class: "myinput form-control"; %>
 
-              <div style="margin-top: -4px">
-                <%= button_tag( :class => "btn btn-default") do %>
-                  <span style="margin-right: 2px; margin-left: 5px;" class="mybutton glyphicon glyphicon-search">Search</span>
-                <% end %>
-              </div>
+              
             </p>
           <% end %>
         </div>
