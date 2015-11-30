@@ -17,5 +17,7 @@ class PagesController < ApplicationController
   def User_Profile
       @userprofile = Userlogin.find(params[:id])
       @rev = Rate.where(rateable_id: params[:id]).select("review")      
+      @userreviews = @userprofile.userreviews.all
+      @userreview = @userprofile.userreviews.build
   end
 end
