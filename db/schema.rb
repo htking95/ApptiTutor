@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(version: 20151121221250) do
     t.string   "classes"
     t.string   "price"
     t.string   "ratings"
+    t.string   "reviews"
     t.string   "skills"
     t.datetime "birthday"
     t.string   "first"

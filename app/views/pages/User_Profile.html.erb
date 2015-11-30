@@ -154,6 +154,10 @@
           </div>
         </div>
     		<% end %>
+
+
+
+
 <% if @userprofile.isTutor? %>
 <h3>Reviews</h3>
 <% @userreviews.each do |r| %>
@@ -167,25 +171,6 @@
 <%= render 'userreviews/form' %>
 <% end %>
 
-
-        <p>
-          <div class="container">          
-              <div class = "row">
-                <div class="col-sm-3">
-                  <strong>Reviews:</strong>           
-                </div>
-              </div>
-            </div>
-          <% @rev.each do |r| %>
-            <div class="container">          
-              <div class = "row">
-                <div class="col-sm-3">           
-                  <%= r[:review] %>  
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </p>
 
   
 
