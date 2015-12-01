@@ -1,61 +1,81 @@
-<!-- TO ENABLE SEARCH, run this command: rake searchkick:reindex CLASS=Userlogin -->
+<!-- TO ENABLE SEARCH, run this command: rake searchkick:reindex CLASS=Userlogin
+start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
 
 <head>
 <style>
-  th {
-    color: black;
-    text-align:center;
+  .searchResult:hover {
+    background-color: #D6D6D6;
+    color: red;
   }
 </style>
 </head>
 <body style="background-color: #363636">
-<div style="margin:25px; ">
-  <div class="panel panel-default">
-    <!-- Panel contents -->
-    <div class="panel-heading" align="center" style="font-size:xx-large; background-color:#00A6DE; color: white; text-shadow: 2px 2px black">Search Results</div>
-    <div class="panel-body" style="background-color:#575757; border:1">
-      <p align="center" style="font-size: large; color:#00A6DE ">Find your the perfect tutor to match your schooling needs! Search above by class, name, email address, or skills!<br>
-      It's time to get ahead of the workload. We are here to help!</p>
-    </div>
-    <div style="background-color: #575757; text-align:center; color:#00A6DE">
-      <div style="border-style: solid; border-width: 5px; border-color: black; margin: 0px 20px 0px 20px">
-        THIS IS GOING TO BE THE FILTER CONTAINER<br>
-        You will be able to apply filters to narrow your search
+  <div style="margin:25px; ">
+    <div class="panel panel-default">
+      <!-- Panel contents -->
+      <div class="panel-heading" align="center" style="font-size:xx-large; background-color:#00A6DE; color: white; text-shadow: 2px 2px black">Search Results</div>
+      <div class="panel-body" style="background-color:#575757; border:1">
+        <p align="center" style="font-size: large; color:#00A6DE ">Find your the perfect tutor to match your schooling needs! Search above by class, name, email address, or skills!<br>
+        It's time to get ahead of the workload. We are here to help!</p>
       </div>
-    </div>
+      <div style="background-color: #575757; text-align:center; color:#00A6DE">
+        <div style="border-style: solid; border-width: 5px; border-color: black; margin: 0px 20px 0px 20px">
+          THIS IS GOING TO BE THE FILTER CONTAINER<br>
+          You will be able to apply filters to narrow your search <br>
+          <b>[] class    [] rating  [] age   [] gender   [] price</b><br>
+          (what do we mean by class? You search via class...)
+        </div>
+      </div>
 
-    <!-- Table -->
-    <div class="table-responsive" align="center" style="text-align:center">
-      <table class="table table-bordered table-hover">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Classes</th>
-            <th>Skills</th>
-            <th>Bio</th>
-          </tr>
-        </thead>
+      <!-- This is here for spacing purposes -->
+      <div style="height:3px"></div>
 
-        <tbody>
-          <% @userlogins.each do |userlogin| %>
-            <tr>
-              <% if userlogin.first? %>
-                <td><a href="../pages/User_Profile/<%= userlogin.id %>" style="text-transform:capitalize;"><%= userlogin.first %> <%= userlogin.last %></a></td>
+      <!-- 
+      - Maybe create a message for if there are no tutors?
+      - Maybe insert a send a message button? But maybe not, there is a message place on the profile page
+      - the little notice thing needs to be removed from the top of the user profile page!!! I fixed this
+      - Need to add age to the user profile page
+      - Need to fix font size of the rating inside the star on the user profile page
+      - try loading pictures...load a default picture
+      - add first name last name to the signup page
+      - edit the way we input price for the user profile
+      -->
+      <% @userlogins.each do |userlogin| %>
+        <!-- A container for each search result -->
+        <%# if userlogin.isTutor? %>
+            <div class="container searchResult" style=" box-shadow: 0px 1px 6px black; margin-bottom: 6px">
+            <a class="searchResult" href="../pages/User_Profile/<%= userlogin.id %>">
+              <div class="row">
+                <div class="col-xs-4"> Profile picture here!</div>
+                <% if userlogin.first? %>
+                  <div class="col-xs-6" style="font-size:x-large"><b><%= userlogin.first %> <%= userlogin.last %></b></div>
                 <% else %>
-                  <td><a href="../pages/User_Profile/<%= userlogin.id %>" style="">n/a<br>Click here to check out their profile!</a></td>
-              <% end %>
-              <td><%= userlogin.email %></td>
-              <td><%= userlogin.classes %></td>
-              <td><%= userlogin.skills %></td>
-              <td><%= userlogin.aboutMe %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+                  <div class="col-xs-6" style="font-size:x-large"><b>Name n/a</b></div>
+                <% end %>
+                <div class="col-xs-4">&nbsp</div>
+                <div class="col-xs-6" style="font-size:large"><b><%= userlogin.email %></b></div>
+                <div class="col-xs-4">&nbsp</div>
+                <div class="col-xs-2"><b>Gender:</b> <%= userlogin.gender %></div>
+                <div class="col-xs-2"><b>Age:</b><%= userlogin.calculate_age(userlogin.birthday) %></div>
+                <div class="col-xs-2"><b>Price:</b> <%= userlogin.price %></div>
+                <div class="col-xs-4">&nbsp</div>
+                <div class="col-xs-6"><b>Classes:</b> <%= userlogin.classes %></div>
+                <div class="col-xs-4">&nbsp</div>
+                <div class="col-xs-6"><b>Skills:</b> <%= userlogin.skills %></div>
+                <div class="col-xs-4">&nbsp</div>
+                <div class="col-xs-6"><b>Bio:</b> <%= userlogin.aboutMe %></div>
+              </div>
+              </a>
+            </div>
+        <%# end %>
+      <% end %>
+
+
+      <hr style="border-color:#208AD6">
+
+
     </div>
   </div>
-</div>
 </body>
 
 
