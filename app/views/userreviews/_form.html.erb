@@ -11,16 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </div>
-  <%= f.hidden_field :userlogin_id %>
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :Overview %><br>
+        <%= f.text_field :name, class: 'form-control', placeholder: "They're pretty good", rows: 1  %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :Review %><br>
+        <%= f.text_area :body, class: 'form-control', placeholder: "They helped me with this, and seemed very intelligent and reasonable", rows: 4  %>
+      </div>
+      <%= f.hidden_field :userlogin_id %>
+    </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit Review", class: "btn btn-success"%>
   </div>
 <% end %>
