@@ -12,7 +12,7 @@
 <div class="container target">
     <div class="row">
         <div class="col-sm-10">
-             <h1 class=""><%= @userprofile.first %> <%= @userprofile.last %></h1>
+             <h1 class=""><% if @userprofile.first.blank? && @userprofile.last.blank?%>Nicolas Cage<% end %><%= @userprofile.first %> <%= @userprofile.last %></h1>
              <button type="button" class="btn btn-info">Send me a message</button>
         </div>
 
@@ -27,17 +27,18 @@
                 <li class="list-group-item text-muted" contenteditable="false">Profile</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span> 2.13.2014</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Yesterday</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender</strong></span><%= @userprofile.gender %></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Age </strong></span><%= @userprofile.birthday %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender</strong></span><% if @userprofile.gender.blank? %>Not given<% end %>
+                  <%= @userprofile.gender %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Age </strong></span><% if @userprofile.birthday.blank? %>Infinity<% end %><%= @userprofile.birthday %></li>
             </ul>
 
            <div class="panel panel-default">
              <div class="panel-heading">Pricing</div>
-             <div class="panel-body"><%= @userprofile.price %></div>
+             <div class="panel-body"><% if @userprofile.price.blank? %>Not provided<% end %><%= @userprofile.price %></div>
            </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading">Email<i class="fa fa-link fa-1x"></i></div>
+                <div class="panel-heading">Email</div>
                 <div class="panel-body"><a href="mailto:<%= @userprofile.email %>" class=""><%= @userprofile.email %></a></div>
             </div>
           
@@ -76,26 +77,31 @@
         <div class="col-sm-9" style="" contenteditable="false">
             <div class="panel panel-default">
                 <div class="panel-heading">About Me!</div>
-                <div class="panel-body"><%= @userprofile.aboutMe %></div>
+                <div class="panel-body"><% if @userprofile.aboutMe.blank? %>Who am i?? If you'd like to know more, send me a message!<% end %><%= @userprofile.aboutMe %></div>
             </div>
 
             <div class="row">
               <div class="col-sm-6" style="" contenteditable="false">
                   <div class="panel panel-default">
                       <div class="panel-heading">My Skills</div>
-                      <div class="panel-body"><%= @userprofile.skills %></div>
+                      <div class="panel-body"><% if @userprofile.skills.blank? %>I swear I have mad skills. If you'd like to know more, send me a message!<% end %><%= @userprofile.skills %></div>
                   </div>
               </div>
               <div class="col-sm-6" style="" contenteditable="false">
                   <div class="panel panel-default">
                       <div class="panel-heading">Classes I Know</div>
-                      <div class="panel-body"><%= @userprofile.classes %></div>
+                      <div class="panel-body"><% if @userprofile.classes.blank? %>School is for chumps. If you'd like to know more, send me a message!<% end %><%= @userprofile.classes %></div>
                   </div>
               </div>
             </div>
            <div class="panel panel-default">
                 <div class="panel-heading">Reviews</div>
                 <div class="panel-body">
+
+                  <% if @userreviews.blank? %>
+                    <h2> <strong>No reviews yet</strong><small><br> Be the first to write a review below! </small> </h2>
+                  <% end %>
+
                   <% @userreviews.each do |r| %>
                     <div class="row">
                       <div class="col-md-12">
