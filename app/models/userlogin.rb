@@ -11,7 +11,7 @@ class Userlogin < ActiveRecord::Base
   }
 end
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :security_questionable
 
   after_create :send_admin_mail
   
