@@ -24,6 +24,9 @@ class Userlogin < ActiveRecord::Base
   
   acts_as_messageable
 
+has_many :userreviews
+
+
   def mailboxer_name
     self.first
   end
@@ -35,5 +38,16 @@ class Userlogin < ActiveRecord::Base
 
   def send_admin_mail
     UserMailer.welcome_email(self).deliver
+  end
+
+  def calculate_age(birthday)
+    if (birthday.blank?) then 
+      birthday = Time.now.utc.to_date
+      now = Time.now.utc.to_date
+      now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
+    else
+    now = Time.now.utc.to_date
+    now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
+    end
   end
 end

@@ -12,7 +12,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20151113080246) do
-
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
     t.integer  "rateable_id"
@@ -117,10 +116,7 @@ ActiveRecord::Schema.define(version: 20151113080246) do
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type"
 
   create_table "skills", force: :cascade do |t|
-    t.integer  "One"
-    t.string   "AAC"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "skillCol"
   end
 
   create_table "userlogins", force: :cascade do |t|
@@ -139,10 +135,6 @@ ActiveRecord::Schema.define(version: 20151113080246) do
     t.boolean  "isTutor"
     t.boolean  "recieveReminders"
     t.string   "profilePicture"
-    t.string   "passwordRecoverQuestion1"
-    t.string   "passwordRecoverQuestion2"
-    t.string   "passwordRecoverAnswer1"
-    t.string   "passwordRecoverAnswer2"
     t.boolean  "isStudent"
     t.string   "aboutMe"
     t.string   "gender"
@@ -163,6 +155,14 @@ ActiveRecord::Schema.define(version: 20151113080246) do
 
   add_index "userlogins", ["email"], name: "index_userlogins_on_email", unique: true
   add_index "userlogins", ["reset_password_token"], name: "index_userlogins_on_reset_password_token", unique: true
+
+  create_table "userreviews", force: :cascade do |t|
+    t.string   "name"
+    t.text     "body"
+    t.integer  "userlogin_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"

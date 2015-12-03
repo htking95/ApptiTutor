@@ -4,15 +4,18 @@ class ApplicationController < ActionController::Base
   def current_user
   	current_userlogin
   end
-
   helper_method :current_user
   helper_method :mailbox, :conversation
 
+  def disable_nav
+    @disable_nav = true
+  end
 
   #protect_from_forgery with: :exception
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
   skip_before_filter :verify_authenticity_token
+  before_filter :disable_nav, only: [:Home]
 
   
   private
@@ -28,8 +31,8 @@ def conversation
   protected
 
     def configure_permitted_parameters
-        devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password) }
-        devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :first, :last, :isTutor, :gender, :recieveReminders, :profilePicture, :passwordRecoverQuestion1, :passwordRecoverQuestion2, :passwordRecoverAnswer1, :passwordRecoverAnswer2, :isStudent, :aboutMe, :favoriteTutors, :classes, :price, :gender, :ratings, :reviews, :skills, :birthday, :email, :avatar) }
+        devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first, :last, :email, :password) }
+        devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :first, :last, :isTutor, :gender, :recieveReminders, :profilePicture, :isStudent, :aboutMe, :favoriteTutors, :classes, :price, :gender, :ratings, :reviews, :skills, :birthday, :avatar) }
     end
 
 end

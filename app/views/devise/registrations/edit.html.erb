@@ -43,6 +43,7 @@
       <%= f.label :gender %>
       <%= f.text_field :gender, autocomplete: "off", class: "form-control" %>
     </div>
+   
     <div class="form-group">
       <%= f.label :is_Tutor %><br>
       <%= f.check_box :isTutor, autocomplete: "off" %>
@@ -60,22 +61,6 @@
       <%= f.text_field :profilePicture, autocomplete: "off", class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :password_Recover_Question_1 %>
-      <%= f.text_field :passwordRecoverQuestion1, autocomplete: "off", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password_Recover_Question_2 %>
-      <%= f.text_field :passwordRecoverQuestion2, autocomplete: "off", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password_Recover_Answer_1 %><br />
-      <%= f.text_field :passwordRecoverAnswer1, autocomplete: "off", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password_Recover_Answer_2 %><br />
-      <%= f.text_field :passwordRecoverAnswer2, autocomplete: "off", class: "form-control"  %>
-    </div>
-    <div class="form-group">
       <%= f.label :about_Me %><br />
       <%= f.text_field :aboutMe, autocomplete: "off", class: "form-control" %>
     </div>
@@ -83,22 +68,26 @@
       <%= f.label :favorite_Tutors %><br />
       <%= f.text_field :favoriteTutors, autocomplete: "off", class: "form-control" %>
     </div>
+
+<% if current_userlogin.isTutor == true %>
     <div class="form-group">
       <%= f.label :classes %><br />
       <%= f.text_field :classes, autocomplete: "off", class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :price %><br />
-      <%= f.text_field :price, autocomplete: "off", class: "form-control" %>
+      <%= f.label :price %><span style="margin-left: 8px">($/hr)</span><br/>
+      <%= f.text_field :price, placeholder: 'Enter just a number (ex. 20, 30, 45, etc...)', autocomplete: "off", class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :skills %><br />
-      <%= f.text_field :skills, autocomplete: "off", class: "form-control" %>
+      <%= f.text_field :skills, placeholder: "What skills do you have?", autocomplete: "off", class: "form-control"; %>
     </div>
+<% end %>
+
     <div class="form-group">
       <%= f.label :birthday %>
       <div class ="row">
-      <%= f.date_select :birthday, { :start_year => 1920, :end_year => 2015 },prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, autocomplete: "off", class: "form-control" %>
+      <%= f.date_select :birthday, { :start_year => 1920, :end_year => 2015 },prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, autocomplete: "off", class: "" %>
       </div>
     </div>
 
