@@ -12,10 +12,6 @@ class RegistrationsController < Devise::RegistrationsController
   		end
   	end
 
-  	def edit
-		@security_question_options = security_questions.all
-	end
-
 	def new
 		super
 	end
