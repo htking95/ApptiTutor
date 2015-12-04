@@ -8,15 +8,16 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :mailbox, :conversation
 
-  def disable_nav
-    @disable_nav = true
-  end
+#  def disable_nav
+#    @disable_nav = true
+#  end  I moved this to the pages controller
 
   #protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
   before_filter :configure_permitted_parameters, if: :devise_controller?
   skip_before_filter :verify_authenticity_token
   before_filter :disable_nav, only: [:Home]
+  before_filter :disable_foot, only: [:Home]
 
   
   private

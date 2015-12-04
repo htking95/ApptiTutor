@@ -19,4 +19,12 @@ class PagesController < ApplicationController
       @userreviews = @userprofile.userreviews.all
       @userreview = @userprofile.userreviews.build
   end
+
+  def disable_nav
+    @disable_nav = true
+  end
+
+  def disable_foot
+    @disable_foot = true
+  end
 end
