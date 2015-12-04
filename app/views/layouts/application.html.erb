@@ -13,20 +13,11 @@
 <!-- lighter blue text color: 00A6DE -->
 <body style="background-color:#FFFEF2; color: #208AD6">
   <div class="header">
-    <%=render 'layouts/navbar' unless @disable_nav %>
+    <%=render 'layouts/navbar'%>
   </div>
   <div class="body">
     <%= yield %>
   </div>
-  <%=render 'layouts/footer' unless @disable_nav %>
-  <!--<div class="footer">
-    <div>
-      <br>
-      <div align="center" style="color:#00A6DE; font-size: large">
-          Have questions? Check out our <a href="/ContactUs" style="color:white; text-decoration:underline">FAQ!</a><br>
-          If you still have questions, <a href="/ContactUs" style="color:white; text-decoration:underline">Contact Us!</a>
-      </div>
-    </div>
-  </div>-->
+  <%=render 'layouts/footer' unless @disable_foot %>
 </body>
 </html>
