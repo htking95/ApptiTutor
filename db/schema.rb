@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121221250) do
+ActiveRecord::Schema.define(version: 20151202180233) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -116,11 +116,13 @@ ActiveRecord::Schema.define(version: 20151121221250) do
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type"
 
+  create_table "security_questions", force: :cascade do |t|
+    t.string "locale", null: false
+    t.string "name",   null: false
+  end
+
   create_table "skills", force: :cascade do |t|
-    t.integer  "One"
-    t.string   "AAC"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "skillCol"
   end
 
   create_table "userlogins", force: :cascade do |t|
@@ -139,10 +141,6 @@ ActiveRecord::Schema.define(version: 20151121221250) do
     t.boolean  "isTutor"
     t.boolean  "recieveReminders"
     t.string   "profilePicture"
-    t.string   "passwordRecoverQuestion1"
-    t.string   "passwordRecoverQuestion2"
-    t.string   "passwordRecoverAnswer1"
-    t.string   "passwordRecoverAnswer2"
     t.boolean  "isStudent"
     t.string   "aboutMe"
     t.string   "gender"
@@ -150,10 +148,13 @@ ActiveRecord::Schema.define(version: 20151121221250) do
     t.string   "classes"
     t.string   "price"
     t.string   "ratings"
+    t.string   "reviews"
     t.string   "skills"
     t.datetime "birthday"
     t.string   "first"
     t.string   "last"
+    t.integer  "security_question_id"
+    t.string   "security_question_answer"
   end
 
   add_index "userlogins", ["email"], name: "index_userlogins_on_email", unique: true
