@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   def current_user
   	current_userlogin
   end
-
   helper_method :current_user
   helper_method :mailbox, :conversation
 
@@ -33,8 +32,8 @@ def conversation
   protected
 
     def configure_permitted_parameters
-        devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password) }
-        devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :first, :last, :isTutor, :gender, :recieveReminders, :profilePicture, :passwordRecoverQuestion1, :passwordRecoverQuestion2, :passwordRecoverAnswer1, :passwordRecoverAnswer2, :isStudent, :aboutMe, :favoriteTutors, :classes, :price, :gender, :ratings, :reviews, :skills, :birthday) }
+        devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first, :last, :email, :password) }
+        devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :first, :last, :isTutor, :gender, :recieveReminders, :profilePicture, :isStudent, :aboutMe, :favoriteTutors, :classes, :price, :gender, :ratings, :reviews, :skills, :birthday) }
     end
 
 end
