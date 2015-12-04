@@ -1,16 +1,119 @@
 <!DOCTYPE html> 
 <html>
-    <head>
-    	<div align="center" style="text-align: center; background-image: url(http://web.ics.purdue.edu/~nschuma/pictures/ApptiTutor_banner_1.jpg); background-position: center; background-size:55%; background-repeat: no-repeat">
-      		<img src="http://web.ics.purdue.edu/~nschuma/pictures/ApptiTutor_logo_1.jpg" style="width:8%">
-      		<div style="color: #0AC6FF; text-shadow: 2px 0px black; font-size: 225%"><b>ApptiTutor</b></div>
-      		<div style="text-align:center">
-        	<i>Find a tutor that fits your needs anywhere, anytime with ApptiTutor!</i>
-      		</div>
-    	</div>
-    </head>
-    <body>
+  <head>
+  <!-- light blue: 0AC6FF -->
+  <style>
+    .content:before {
+      content: "";
+      position: fixed;
+      left: 0;
+      right: 0;
+      z-index: -1;
+      
+      display: block;
+      background-image: url('http://passedtenseblog.azurewebsites.net/wp-content/uploads/2013/08/Fotolia_42575622_Subscription_Monthly_XXL.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100%;
+      
+      -webkit-filter: blur(8px);
+      -moz-filter: blur(8px);
+      -o-filter: blur(8px);
+      -ms-filter: blur(8px);
+      filter: blur(8px);
+    }
 
-    </body>
+    .content {
+      position: fixed;
+      left: 0;
+      right: 0;
+      z-index: 0;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    .myinput {
+      color: #208AD6;
+      width: 90%;
+      height: 35px;
+    }
+
+    .mybutton {
+      color: #208AD6;
+    }
+
+    .mysearchbar:before {
+      opacity: .7;
+      margin-left: 15%;
+      margin-top: -10px;
+
+      content: "";
+      position: fixed;
+      left: 0;
+      right: 0;
+      z-index: -1;
+      background-color: #208AD6;
+      display: block;
+      background-size: 100%;
+      width: 70%;
+      height: 10%;
+      box-shadow: 0px 3px 15px 3px black;
+      
+      -webkit-filter: blur(2px);
+      -moz-filter: blur(2px);
+      -o-filter: blur(2px);
+      -ms-filter: blur(2px);
+      filter: blur(2px);
+    }
+
+    .mysearchbar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      z-index: 0;
+      margin: 3% 15% 3% 15%; 
+      padding:8px 8px 5px 8px;
+    }
+  </style>
+  </head>
+
+  <body>
+
+    <div class="content">
+      <div class="" align="center" style="text-align: center;">
+        <div align="right">
+          <% if userlogin_signed_in? %>
+            <%= link_to "Sign out", destroy_userlogin_session_path, style:"color: #208AD6; text-shadow: 1px 1px 3px white; font-size: 130%; margin-right: 15px" %>
+          <% else %>
+            <%= link_to "Sign up", new_userlogin_registration_path, style:"color: #208AD6; text-shadow: 1px 1px 3px white; font-size: 130%; margin-right: 15px" %>
+            <%= link_to "Sign in", new_userlogin_session_path, style:"color: #208AD6; text-shadow: 1px 1px 3px white; font-size: 130%; margin-right: 15px" %>
+          <% end %> 
+        </div>
+
+        <img src="http://web.ics.purdue.edu/~nschuma/pictures/apptitutor_logo_2.png" style="width:100px">
+        
+        <h1 style="color: #208AD6; text-shadow: 3px 2px 3px black; font-size:400%"><b>ApptiTutor</b></h1>
+
+        <div style="text-align: center; font-size: x-large; text-shadow: 1px 1px 2px black; color: #208AD6">
+        <i>Find a tutor that fits your needs anywhere, anytime!</i></div>
+        
+        <div class="" align="center" style="margin-top: 20px; margin-right: 15%; margin-left: 15%">
+          <%= form_tag search_userlogins_path, method: :get, class: "", role: "search" do %>
+            <p>
+              <%= text_field_tag :search, params[:search], autofocus: true,  placeholder:"Search for a class, a skill, or a tutor by name!", class: "myinput form-control"; %>
+
+              
+            </p>
+          <% end %>
+        </div>
+
+      </div>
+      <div align="center" style="color:#208AD6; font-size: large; margin-top: 550px; text-shadow: 1px 1px 3px black">
+          Have questions? Check out our <a href="/ContactUs" style="color:white; text-decoration:underline">FAQ!</a><br>
+          If you still have questions, <a href="/ContactUs" style="color:white; text-decoration:underline">Contact Us!</a>
+      </div>
+    </div>
+  </body>
 </html>
 

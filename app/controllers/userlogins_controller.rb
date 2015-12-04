@@ -1,6 +1,6 @@
 # app/controllers/userlogins_controller.rb
 class UserloginsController < ApplicationController
-	def index
+  def index
     	@userlogins = Userlogin.all
   	end
 

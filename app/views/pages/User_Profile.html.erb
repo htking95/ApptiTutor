@@ -5,156 +5,134 @@
   <%= javascript_include_tag 'jquery.raty.js','ratyrate.js'%>
 <% end %> 
 
-<p id="notice"><%= notice %></p>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-3">
-      <p>
-        <strong>Email:</strong>
-        <%= @userprofile.email %>
-      </p>
+  <script>
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover(); 
+    });
+  </script>
+<div class="container target">
+    <div class="row">
+        <div class="col-sm-10">
+             <h1 style="text-transform:capitalize;" class=""><% if @userprofile.first.blank? && @userprofile.last.blank?%>Nicolas Cage<% end %><%= @userprofile.first %> <%= @userprofile.last %></h1>
+             <button type="button" class="btn btn-info">Send me a message</button>
+        </div>
 
-      <p>
-        <strong>Istutor:</strong>
-        <%= @userprofile.isTutor %>
-      </p>
+        <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="https://sports-images.vice.com/images/articles/meta/2015/01/14/untitled-article-1421274130.png?crop=1xw:0.8158640226628895xh;0xw,0.1671388101983003xh&resize=900:*&output-quality=75"></a>
+        </div>
 
-      <p>
-        <strong>Isstudent:</strong>
-        <%= @userprofile.isStudent %>
-      </p>
-
-      <p>
-        <strong>Aboutme:</strong>
-        <%= @userprofile.aboutMe %>
-      </p>
-
-      <p>
-      	<strong>First Name:</strong>
-      	<%= @userprofile.first %>
-      </p>
-
-      <p>
-      	<strong>Last Name:</strong>
-      	<%= @userprofile.last %>
-      </p>
-
-      <p>
-      	<strong>Gender:</strong>
-      	<%= @userprofile.gender %>
-      </p>
-
-      <p>
-      	<strong>Classes:</strong>
-      	<%= @userprofile.classes %>
-      </p>
-
-      <p>
-        <strong>Skills:</strong>
-        <%= @userprofile.skills %>
-      </p>
-
-      <p>
-      	<strong>Prices:</strong>
-      	<%= @userprofile.price %>
-      </p>
-
-      <p>
-      	<strong>Ratings:</strong>
-      </p>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-3">
+            <!--left col-->
+            <ul class="list-group">
+                <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span> 2.13.2014</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Yesterday</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender</strong></span><% if @userprofile.gender.blank? %>Not given<% end %>
+                  <%= @userprofile.gender %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Age </strong></span><% if @userprofile.birthday.blank? %>Infinity<% end %><%= @userprofile.calculate_age(@userprofile.birthday) %></li>
+            </ul>
 
-    <div class="col-xs-6">
-        <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
-        <div class="form-group">
-          <%= f.label :recipients %>
-          <%= f.text_field :recipients, :readonly => true , :value =>  @userprofile.email, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :subject %>
-          <%= f.text_field :subject, placeholder: "I'd like you to tutor me!", class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :message %>
-          <%= f.text_area :body, class: 'form-control',placeholder: "I need help with this class, this class, and this class. When would you be free to help?", rows: 4  %>
-        </div>
-        <%= f.submit "Send Message", class: "btn btn-success" %>
+            <% if @userprofile.isTutor? %>
+             <div class="panel panel-default">
+               <div class="panel-heading">Pricing</div>
+               <div class="panel-body"><% if @userprofile.price.blank? %>Not provided<% end %><%= @userprofile.price %></div>
+             </div>
+            <% end %>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Email</div>
+                <div class="panel-body"><a href="mailto:<%= @userprofile.email %>" class=""><%= @userprofile.email %></a></div>
+            </div>
+          
+            <% if @userprofile.isTutor? %>
+              <ul class="list-group" style="pointer-events: none">
+                  <li class="list-group-item text-muted">Ratings</li>
+                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></span>
+                    
+                    <%= rating_for @userprofile, "clarity", disable_after_rate: false, 
+                    imdb_avg: true,
+                    cancel_off: "blank.jpg",
+                    cancel_on: "blank.jpg" %>
+
+                  </li>
+                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Knowledge </strong><span class="glyphicon glyphicon-info-sign"></span></span> 
+
+                    <%= rating_for @userprofile, "knowledge", disable_after_rate: false, 
+                    imdb_avg: true,
+                    cancel_off: "blank.jpg",
+                    cancel_on: "blank.jpg" %></li>
+                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Politeness </strong><span class="glyphicon glyphicon-info-sign"></span></span> 
+
+                    <%= rating_for @userprofile, "politeness", disable_after_rate: false, 
+                    imdb_avg: true,
+                    cancel_off: "blank.jpg",
+                    cancel_on: "blank.jpg" %></li>
+                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Flexibility </strong><span class="glyphicon glyphicon-info-sign"></span></span> 
+
+                    <%= rating_for @userprofile, "flexibility", disable_after_rate: false, 
+                    imdb_avg: true,
+                    cancel_off: "blank.jpg",
+                    cancel_on: "blank.jpg" %></li>
+              </ul>
+          </div>
         <% end %>
-    </div>
-  </div>
-</div>
 
-<div class="container">
-  		<div class="row">
-        <div class="col-xs-0 center-block">
-        </div>
-        <div class="col-xs-2">
-          <%= imdb_style_rating_for @userprofile, current_userlogin%>
-        </div>
-  		</div>
-</div>
+        <!--/col-3-->
+        <div class="col-sm-9" style="" contenteditable="false">
+            <div class="panel panel-default">
+                <div class="panel-heading">About Me!</div>
+                <div class="panel-body"><% if @userprofile.aboutMe.blank? %>Who am i?? If you'd like to know more, send me a message!<% end %><%= @userprofile.aboutMe %></div>
+            </div>
 
-    		<% if current_userlogin %>
-        <div class="container">
-          <div class = "row">
-            <div class="col-sm-3">
-        			Clarity: <%= rating_for @userprofile, "clarity", disable_after_rate: true, 
-        				imdb_avg: true,
-        				enable_half: true, 
-        				cancel_hint: 'Cancel this vote!' %>
-        			
+            <% if @userprofile.isTutor? %>
+              <div class="row">
+                <div class="col-sm-6" style="" contenteditable="false">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">My Skills</div>
+                        <div class="panel-body"><% if @userprofile.skills.blank? %>I swear I have mad skills. If you'd like to know more, send me a message!<% end %><%= @userprofile.skills %></div>
+                    </div>
+                </div>
+                <div class="col-sm-6" style="" contenteditable="false">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Classes I Know</div>
+                        <div class="panel-body"><% if @userprofile.classes.blank? %>School is for chumps. If you'd like to know more, send me a message!<% end %><%= @userprofile.classes %></div>
+                    </div>
+                </div>
+              </div>
+             <div class="panel panel-default">
+                  <div class="panel-heading">Reviews</div>
+                  <div class="panel-body">
+
+                    <% if @userreviews.blank? %>
+                      <h2> <strong>No reviews yet</strong><small><br> Be the first to write a review below! </small> </h2>
+                    <% end %>
+
+                    <% @userreviews.each do |r| %>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <strong><%= r.name %></strong>
+                          <br/>
+                          <p><%= r.body %></p> 
+                          <p><%= link_to 'Delete', userreview_path(r), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
             </div>
-            <div class="col-sm-9" style="display: inline-block; vertical-align: middle; float: none;">
-              <p class="lead"> Clarity: How well was your tutor able to relay information? </p>
-            </div>
-          </div>
-          <div class = "row">
-            <div class="col-sm-3">
-        			Knowledge: <%= rating_for @userprofile, "knowledge",
-        				disable_after_rate: true, 
-        				imdb_avg: true,
-        				enable_half: true, 
-        				cancel_hint: 'Cancel this vote!' %>
-        			
-            </div>
-            <div class="col-sm-9">
-                <p class="lead"> Knowledge: How well did your tutor know the information? </p>
-            </div>
-          </div>
-          <div class = "row">
-            <div class="col-sm-3">
-        			Politeness: <%= rating_for @userprofile, "politeness", disable_after_rate: true, 
-        				imdb_avg: true,
-        				enable_half: true, 
-        				cancel_hint: 'Cancel this vote!' %>
-        			
-            </div>
-            <div class="col-sm-9">
-                <p class="lead"> Politeness: How well did the tutor treat you? </p>
-            </div>
-          </div>
-          <div class = "row">
-            <div class="col-sm-3">
-        			Flexibility: <%= rating_for @userprofile, "flexibility", disable_after_rate: true,
-        				imdb_avg: true, 
-        				enable_half: true,
-        				cancel_hint: 'Cancel this vote!' %>
-            </div>
-            <div class="col-sm-9">
-                <p class="lead"> Flexibility: How well was your tutor able to work around your schedule? </p>
+                <div class="panel panel-default target">
+                  <div class="panel-heading" contenteditable="false">Write a Review</div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-12">
+                         <%= render 'userreviews/form' %>
+                      </div> 
+                  </div> 
+                </div>    
+              </div>
             </div>
           </div>
-        </div>
-    		<% end %>
+        <% end %>
 
-
-
-
-
-<p>
-	<string>Reviews:</strong>
-	<%= @userprofile.reviews %>
-</p>
-
-
-
+      </div>
