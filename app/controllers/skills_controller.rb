@@ -2,11 +2,11 @@ require 'csv'
 class SkillsController < ApplicationController
   before_action :set_skill, only: [:show, :edit, :update, :destroy]
 
-#csv_text = File.read('SkillsList.csv')
-#csv = CSV.parse(csv_text, :headers => true)
-#csv.each do |row|
-#  Skill.create!(row.to_hash)
-#end
+csv_text = File.read('SkillsList.csv')
+csv = CSV.parse(csv_text, :headers => true)
+csv.each do |row|
+  Skill.create!(row.to_hash)
+end
 
 
 
@@ -78,6 +78,6 @@ class SkillsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def skill_params
-      params.require(:skill).permit(:One, :AAC)
+      params.require(:skill).permit(:skillCol)
     end
 end
