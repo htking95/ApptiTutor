@@ -40,6 +40,7 @@ gem 'therubyracer'
 gem 'searchkick'
 gem 'paperclip', '~> 4.1'
 gem 'devise_security_extension'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 # Use Capistrano for deployment
