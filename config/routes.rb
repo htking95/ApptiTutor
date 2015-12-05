@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     end
   end
 
+resources :favorite_userlogins, only: [:create, :destroy]
+
   get 'pages/Home'
 
   get 'pages/Messaging'
