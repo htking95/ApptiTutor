@@ -140,7 +140,12 @@
         <% end %>
       </div>
 
-
+      <%- unless current_userlogin.favorite_userlogins.exists?(id: @userprofile.id) -%>
+      <%= button_to 'Add to favorites', favorite_userlogins_path(userlogin_id: @userprofile.id), method: :post %>
+      <%- else -%>
+      <%= button_to 'Remove from favorites', favorite_userlogin_path(id: @userprofile.id), method: :delete %>
+      <%- end -%>
+      
       <div class="modal fade" id="messageModal" tabindex="-1" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">

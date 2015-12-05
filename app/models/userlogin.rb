@@ -21,8 +21,10 @@ end
   
   acts_as_messageable
 
-has_many :userreviews
+  has_many :userreviews
 
+  has_many :favorites
+  has_many :favorite_userlogins, through: :favorites, source: :favorited, source_type: 'Userlogin'
 
   def mailboxer_name
     self.first
