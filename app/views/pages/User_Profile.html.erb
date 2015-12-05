@@ -9,15 +9,19 @@
     $(document).ready(function(){
         $('[data-toggle="popover"]').popover(); 
     });
+
+    $('#messageModal').on('shown.bs.modal', function () {
+      $('#messageModal').focus()
+    });
   </script>
 <div class="container target">
     <div class="row">
         <div class="col-sm-10">
              <h1 style="text-transform:capitalize;" class=""><% if @userprofile.first.blank? && @userprofile.last.blank?%>Nicolas Cage<% end %><%= @userprofile.first %> <%= @userprofile.last %></h1>
-             <button type="button" class="btn btn-info">Send me a message</button>
+             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#messageModal">Send me a message</button>
         </div>
 
-        <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="https://sports-images.vice.com/images/articles/meta/2015/01/14/untitled-article-1421274130.png?crop=1xw:0.8158640226628895xh;0xw,0.1671388101983003xh&resize=900:*&output-quality=75"></a>
+        <div class="col-sm-2" style="padding:3px 3px 3px 3px;"><a class="pull-right"><img title="profile image" class="img-circle img-responsive" src="https://sports-images.vice.com/images/articles/meta/2015/01/14/untitled-article-1421274130.png?crop=1xw:0.8158640226628895xh;0xw,0.1671388101983003xh&resize=900:*&output-quality=75"></a>
         </div>
 
     </div>
@@ -134,5 +138,34 @@
             </div>
           </div>
         <% end %>
-
       </div>
+
+
+      <div class="modal fade" id="messageModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h2 class="modal-title">Send <% if @userprofile.first.blank? && @userprofile.last.blank?%>Nicolas Cage<% end %><%= @userprofile.first %> <%= @userprofile.last %> a message</h2>
+            </div>
+
+            <div class="modal-body">
+              <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>    
+                <div class="form-group">   
+                  <%= f.label :recipient %>   
+                  <%= f.text_field :recipients, :readonly => true , :value =>  @userprofile.email, class: "form-control" %>    
+                </div>
+                <div class="form-group">   
+                  <%= f.label :subject %>    
+                  <%= f.text_field :subject, placeholder: "I'd like you to tutor me!", class: "form-control" %>    
+                </div>   
+                <div class="form-group">   
+                  <%= f.label :message %>    
+                  <%= f.text_area :body, class: 'form-control',placeholder: "I need help with this class, this class, and this class. When would you be free to help?", rows: 4  %>    
+                </div>   
+                <%= f.submit "Send Message", class: "btn btn-success" %>   
+              <% end %>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
