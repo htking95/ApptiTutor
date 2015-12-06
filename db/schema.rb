@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202180233) do
+ActiveRecord::Schema.define(version: 20151203221236) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -125,40 +125,8 @@ ActiveRecord::Schema.define(version: 20151202180233) do
     t.string "skillCol"
   end
 
-  create_table "userlogins", force: :cascade do |t|
-    t.string   "email",                    default: "", null: false
-    t.string   "encrypted_password",       default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",            default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.boolean  "isTutor"
-    t.boolean  "recieveReminders"
-    t.string   "profilePicture"
-    t.boolean  "isStudent"
-    t.string   "aboutMe"
-    t.string   "gender"
-    t.string   "favoriteTutors"
-    t.string   "classes"
-    t.string   "price"
-    t.string   "ratings"
-    t.string   "reviews"
-    t.string   "skills"
-    t.datetime "birthday"
-    t.string   "first"
-    t.string   "last"
-    t.integer  "security_question_id"
-    t.string   "security_question_answer"
-  end
-
-  add_index "userlogins", ["email"], name: "index_userlogins_on_email", unique: true
-  add_index "userlogins", ["reset_password_token"], name: "index_userlogins_on_reset_password_token", unique: true
+# Could not dump table "userlogins" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "userreviews", force: :cascade do |t|
     t.string   "name"
