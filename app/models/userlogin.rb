@@ -9,7 +9,7 @@ class Userlogin < ActiveRecord::Base
     skills: skills,
     classes: classes
   }
-end
+  end
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -18,11 +18,16 @@ end
 
   ratyrate_rateable 'overall', 'clarity', 'knowledge', 'politeness', 'flexibility'
   ratyrate_rater
+
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#"}, :default_url => "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   
   acts_as_messageable
 
-has_many :userreviews
+  has_many :userreviews
 
+  has_many :favorites
+  has_many :favorite_userlogins, through: :favorites, source: :favorited, source_type: 'Userlogin'
 
   def mailboxer_name
     self.first

@@ -18,7 +18,7 @@
              <button type="button" class="btn btn-info">Send me a message</button>
         </div>
 
-        <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="https://sports-images.vice.com/images/articles/meta/2015/01/14/untitled-article-1421274130.png?crop=1xw:0.8158640226628895xh;0xw,0.1671388101983003xh&resize=900:*&output-quality=75"></a>
+        <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-rounded img-responsive" src="<%= @userprofile.avatar.url(:medium) %>"></a>
         </div>
 
     </div>
@@ -140,3 +140,10 @@
 <% else %>
 <%=redTo404 %>
 <% end %>
+
+<%- unless current_userlogin.favorite_userlogins.exists?(id: @userprofile.id) -%>
+<%= button_to 'Add to favorites', favorite_userlogins_path(userlogin_id: @userprofile.id), method: :post %>
+<%- else -%>
+<%= button_to 'Remove from favorites', favorite_userlogin_path(id: @userprofile.id), method: :delete %>
+<%- end -%>
+

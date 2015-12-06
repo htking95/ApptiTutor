@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.5'
+ruby '2.2.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
@@ -36,13 +36,15 @@ gem 'bootstrap-sass', '~> 3.2.0.2'
 gem 'autoprefixer-rails'
 gem 'ratyrate'
 gem 'execjs'
+gem 'therubyracer'
+gem 'searchkick'
+gem 'paperclip', '~> 4.1'
+gem 'devise_security_extension'
 
-# gem 'therubyracer'
 # Use Unicorn as the app server
 # gem 'unicorn'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'searchkick'
 gem 'chosen-rails'
 
 
