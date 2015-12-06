@@ -1,23 +1,38 @@
 <div class="row">
   <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="https://macguffilms.files.wordpress.com/2015/03/nic-cage-browstache-elite-daily.jpg" alt="...">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
+    
+<%  current_userlogin.favorites.each do |u| %>
+        <!-- A container for each search result -->
+        <% userlogin = Userlogin.find(u.favorited_id)%>
+         <%# if userlogin.isTutor? %>
+            <div class="container searchResult" style=" box-shadow: 0px 1px 6px black; margin-bottom: 6px">
+            <a class="searchResult" href="../pages/User_Profile/<%= userlogin.id %>">
+              <div class="row">
+                <div class="col-xs-4"> Profile picture here!</div>
+                <% if userlogin.first? then %>
+                  <div class="col-xs-6" style="font-size:x-large"><b><%= userlogin.first %> <%= userlogin.last %></b></div>
+                <% else %>
+                  <div class="col-xs-6" style="font-size:x-large"><b>Name n/a</b></div>
+                <% end %>
+                <div class="col-xs-4">&nbsp</div>
+                <div class="col-xs-6" style="font-size:large"><b><%= userlogin.email %></b></div>
+                <div class="col-xs-4">&nbsp</div>
+                <div class="col-xs-2"><b>Gender:</b> <%= userlogin.gender %></div>
+                <div class="col-xs-2"><b>Age:</b><%= userlogin.calculate_age(userlogin.birthday) %></div>
+                <div class="col-xs-2"><b>Price:</b> <%= userlogin.price %></div>
+                <div class="col-xs-4">&nbsp</div>
+                <div class="col-xs-6"><b>Classes:</b> <%= userlogin.classes %></div>
+                <div class="col-xs-4">&nbsp</div>
+                <div class="col-xs-6"><b>Skills:</b> <%= userlogin.skills %></div>
+                <div class="col-xs-4">&nbsp</div>
+                <div class="col-xs-6"><b>Bio:</b> <%= userlogin.aboutMe %></div>
+              </div>
+              </a>
+            </div>
+        <%# end %>
+      <% end %>
 
-    <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="http://www.dlcompare.com/upload/gameimage/file/7447.jpeg" alt="...">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
+
+
   </div>
 </div>
