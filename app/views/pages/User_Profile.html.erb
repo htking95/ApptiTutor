@@ -10,6 +10,7 @@
         $('[data-toggle="popover"]').popover(); 
     });
   </script>
+<% if @userprofile.isTutor? %>
 <div class="container target">
     <div class="row">
         <div class="col-sm-10">
@@ -136,10 +137,13 @@
         <% end %>
 
       </div>
-
+<% else %>
+<%=redTo404 %>
+<% end %>
 
 <%- unless current_userlogin.favorite_userlogins.exists?(id: @userprofile.id) -%>
 <%= button_to 'Add to favorites', favorite_userlogins_path(userlogin_id: @userprofile.id), method: :post %>
 <%- else -%>
 <%= button_to 'Remove from favorites', favorite_userlogin_path(id: @userprofile.id), method: :delete %>
 <%- end -%>
+
