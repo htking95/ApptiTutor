@@ -24,7 +24,7 @@
       display: inline;
     }
   </style>
-
+<% if @userprofile.isTutor? %>
 <div class="container target">
     <div class="row">
         <div class="col-sm-10">
@@ -37,7 +37,7 @@
             <%- end -%>
         </div>
 
-        <div class="col-sm-2" style="padding:7px 7px 7px 7px;"><a class="pull-right"><img title="profile image" class="img-circle img-responsive" src="https://sports-images.vice.com/images/articles/meta/2015/01/14/untitled-article-1421274130.png?crop=1xw:0.8158640226628895xh;0xw,0.1671388101983003xh&resize=900:*&output-quality=75"></a>
+        <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-rounded img-responsive" src="<%= @userprofile.avatar.url(:medium) %>"></a>
         </div>
 
     </div>
@@ -184,3 +184,7 @@
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
+<% else %>
+<%=redTo404 %>
+<% end %>
+

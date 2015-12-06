@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 #  end  I moved this to the pages controller
 
   #protect_from_forgery with: :exception
-  protect_from_forgery with: :null_session
+  protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
   skip_before_filter :verify_authenticity_token
   before_filter :disable_nav, only: [:Home]
@@ -33,7 +33,7 @@ def conversation
 
     def configure_permitted_parameters
         devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first, :last, :email, :password) }
-        devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :first, :last, :isTutor, :gender, :recieveReminders, :profilePicture, :isStudent, :aboutMe, :favoriteTutors, :classes, :price, :gender, :ratings, :reviews, :skills, :birthday) }
+        devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :first, :last, :isTutor, :gender, :recieveReminders, :profilePicture, :isStudent, :aboutMe, :favoriteTutors, :classes, :price, :gender, :ratings, :reviews, :skills, :birthday, :avatar) }
     end
 
 end
