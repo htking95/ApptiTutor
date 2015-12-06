@@ -1,12 +1,10 @@
 <%= form_tag search_userlogins_path, method: :get, class: "navbar-form pull-left", role: "search" do %>
-          <p>
-            <%= text_field_tag :search, params[:search],  placeholder:"Search away..." , class: "form-control" %>
-            <%= button_tag( :class => "btn btn-default") do %>
-            <span style="margin-right: 2px" class="glyphicon glyphicon-search"></span>Search
+          <div class="input-group">
+            <%= text_field_tag :search, params[:search],  placeholder:"Search" , class: "form-control" %>
             <div class="input-group-btn">
-              content
-            </div>
+            <%= button_tag( :class => "btn btn-default") do %>
+            <span style="margin-right: 2px" class="glyphicon glyphicon-search"></span>
             <% end %>
-            
-          </p>
+            </div>            
+          </div>
         <% end %>
