@@ -1,38 +1,105 @@
-<div class="row">
-  <div class="col-sm-6 col-md-4">
-    
-<%  current_userlogin.favorites.each do |u| %>
-        <!-- A container for each search result -->
-        <% userlogin = Userlogin.find(u.favorited_id)%>
-         <%# if userlogin.isTutor? %>
-            <div class="container searchResult" style=" box-shadow: 0px 1px 6px black; margin-bottom: 6px">
-            <a class="searchResult" href="../pages/User_Profile/<%= userlogin.id %>">
-              <div class="row">
-                <div class="col-xs-4"> Profile picture here!</div>
-                <% if userlogin.first? then %>
-                  <div class="col-xs-6" style="font-size:x-large"><b><%= userlogin.first %> <%= userlogin.last %></b></div>
-                <% else %>
-                  <div class="col-xs-6" style="font-size:x-large"><b>Name n/a</b></div>
-                <% end %>
-                <div class="col-xs-4">&nbsp</div>
-                <div class="col-xs-6" style="font-size:large"><b><%= userlogin.email %></b></div>
-                <div class="col-xs-4">&nbsp</div>
-                <div class="col-xs-2"><b>Gender:</b> <%= userlogin.gender %></div>
-                <div class="col-xs-2"><b>Age:</b><%= userlogin.calculate_age(userlogin.birthday) %></div>
-                <div class="col-xs-2"><b>Price:</b> <%= userlogin.price %></div>
-                <div class="col-xs-4">&nbsp</div>
-                <div class="col-xs-6"><b>Classes:</b> <%= userlogin.classes %></div>
-                <div class="col-xs-4">&nbsp</div>
-                <div class="col-xs-6"><b>Skills:</b> <%= userlogin.skills %></div>
-                <div class="col-xs-4">&nbsp</div>
-                <div class="col-xs-6"><b>Bio:</b> <%= userlogin.aboutMe %></div>
+<style>
+  .body {
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+  }
+  .panel {
+    background-color: #ffffe9;
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .thumbnail{
+    box-shadow: 3px 3px 2px #000000;
+  }
+
+  .thumbnail:hover{
+    background-color: #D6D6D6;
+  }
+
+  .btn-success {
+    display: inline;
+  }
+
+  .btn-success div {
+    display: inline;
+  }
+</style>
+
+  <script>
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover(); 
+    });
+
+    $('#messageModal').on('shown.bs.modal', function () {
+      $('#messageModal').focus()
+    });
+  </script>
+
+<div class="panel panel-default">
+  <div class="row"> 
+    <%  current_userlogin.favorites.each do |u| %>
+            <!-- A container for each search result -->
+            <% fav = Userlogin.find(u.favorited_id)%>
+             <%# if userlogin.isTutor? %>
+
+              <div class="col-md-4">
+                 
+                <div class="thumbnail">
+                  <img class="img-rounded img-responsive" src="http://i.4cdn.org/n/1449204268917.jpg" alt="...">
+                  <div class="caption">
+                    <div class="row">
+                      <h2>
+                        <% if fav.first? || fav.last? then %>
+                          <div class="col-xs-6" style="font-size:xx-large; text-align: center;"><b><%= fav.first %> <%= fav.last %></b></div>
+                        <% else %>
+                          <div class="col-xs-6" style="font-size:xx-large; text-align: center;"><b>Name n/a</b></div>
+                        <% end %>
+                      </h2>
+                      <p><button type="button" class="btn btn-info" data-toggle="modal" data-target="#messageModal">Send message</button> 
+                        <%= button_to 'Unfavorite', favorite_userlogin_path(id: u.favorited_id), class: "btn btn-success", method: :delete %></p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              </a>
-            </div>
-        <%# end %>
-      <% end %>
+
+
+            <div class="modal fade" id="messageModal" tabindex="-1" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h2 class="modal-title">Send <% if fav.first.blank? && fav.last.blank?%>Nicolas Cage<% end %><%= fav.first %> <%= fav.last %> a message</h2>
+                  </div>
+
+                  <div class="modal-body">
+                    <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>    
+                      <div class="form-group">   
+                        <%= f.label :recipient %>   
+                        <%= f.text_field :recipients, :readonly => true , :value =>  fav.email, class: "form-control" %>    
+                      </div>
+                      <div class="form-group">   
+                        <%= f.label :subject %>    
+                        <%= f.text_field :subject, placeholder: "I'd like you to tutor me!", class: "form-control" %>    
+                      </div>   
+                      <div class="form-group">   
+                        <%= f.label :message %>    
+                        <%= f.text_area :body, class: 'form-control',placeholder: "I need help with this class, this class, and this class. When would you be free to help?", rows: 4  %>    
+                      </div>   
+                      <%= f.submit "Send Message", class: "btn btn-success" %>   
+                    <% end %>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
 
 
 
-  </div>
-</div>
+    <% end %>
+  </div><!--Row-->
+</div><!--Panel-->
+
+            
