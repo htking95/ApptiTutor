@@ -10,6 +10,7 @@
         $('[data-toggle="popover"]').popover(); 
     });
   </script>
+<% if @userprofile.isTutor? %>
 <div class="container target">
     <div class="row">
         <div class="col-sm-10">
@@ -136,3 +137,6 @@
         <% end %>
 
       </div>
+<% else %>
+<%=redTo404 %>
+<% end %>

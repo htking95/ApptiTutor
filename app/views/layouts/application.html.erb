@@ -11,13 +11,13 @@
   <title>ApptiTutor</title>
 </head>
 <!-- lighter blue text color: 00A6DE -->
-<body style="background-color:#FFFEF2; color: #208AD6">
+<body style="background-color: white; color: #208AD6">
   <div class="header">
     <%=render 'layouts/navbar'%>
   </div>
   <div class="body">
     <%= yield %>
   </div>
-  <%=render 'layouts/footer' unless @disable_foot %>
+  	<%=render 'layouts/footer' unless @disable_foot %>
 </body>
 </html>
