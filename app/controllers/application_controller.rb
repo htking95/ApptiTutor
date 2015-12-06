@@ -7,15 +7,16 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :mailbox, :conversation
 
-  def disable_nav
-    @disable_nav = true
-  end
+#  def disable_nav
+#    @disable_nav = true
+#  end  I moved this to the pages controller
 
   #protect_from_forgery with: :exception
-  protect_from_forgery with: :null_session
+  protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
   skip_before_filter :verify_authenticity_token
   before_filter :disable_nav, only: [:Home]
+  before_filter :disable_foot, only: [:Home]
 
   
   private
@@ -32,6 +33,6 @@ def conversation
 
     def configure_permitted_parameters
         devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first, :last, :email, :password) }
-        devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :first, :last, :isTutor, :gender, :recieveReminders, :profilePicture, :isStudent, :aboutMe, :favoriteTutors, :classes, :price, :ratings, :reviews, :skills, :birthday, :questions1, :questions2, :answers1, :answers2) }
+        devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :first, :last, :isTutor, :gender, :recieveReminders, :profilePicture, :isStudent, :aboutMe, :favoriteTutors, :classes, :price, :ratings, :reviews, :skills, :birthday, :questions1, :questions2, :answers1, :answers2, :avatar) }
     end
 end

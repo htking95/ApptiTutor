@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
   resources :userreviews
-  #devise_for :userlogins, :controllers => {:registrations => "registrations"}
-  devise_for :userlogins, :controllers => {:userlogins => "userlogins"} do
+  #devise_for :sessions, :controllers => {:sessions => "sessions"}
+  devise_for :userlogins, :controllers => {:userlogins => "userlogins", :sessions => "sessions"} do
    # collection do
    #   get 'search'
    # end
@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       post :untrash
     end
   end
+
+resources :favorite_userlogins, only: [:create, :destroy]
 
   get 'pages/Home'
 
