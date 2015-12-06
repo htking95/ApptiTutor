@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202180233) do
+ActiveRecord::Schema.define(version: 20151204030055) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20151202180233) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "userlogin_id"
+    t.integer  "favorited_id"
+    t.string   "favorited_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "favorites", ["favorited_type", "favorited_id"], name: "index_favorites_on_favorited_type_and_favorited_id"
+  add_index "favorites", ["userlogin_id"], name: "index_favorites_on_userlogin_id"
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
     t.integer "unsubscriber_id"
