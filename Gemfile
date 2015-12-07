@@ -40,6 +40,7 @@ gem 'therubyracer'
 gem 'searchkick'
 gem 'paperclip', '~> 4.1'
 gem "paperclip-dropbox", ">= 1.1.7"
+gem "figaro"
 gem 'devise_security_extension'
 
 # Use Unicorn as the app server
