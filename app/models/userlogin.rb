@@ -19,7 +19,9 @@ class Userlogin < ActiveRecord::Base
   ratyrate_rateable 'overall', 'clarity', 'knowledge', 'politeness', 'flexibility'
   ratyrate_rater
 
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#"}, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#"}, :default_url => "/images/:style/missing.png",
+                    :storage => :dropbox,
+                    :dropbox_credentials => Rails.root.join("config/dropbox.yml")
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   
   acts_as_messageable
