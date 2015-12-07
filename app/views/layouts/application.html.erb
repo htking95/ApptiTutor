@@ -8,16 +8,23 @@
 <%= yield :javascript_includes %>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/apptitutor-2.png" />
   <title>ApptiTutor</title>
 </head>
-<!-- lighter blue text color: 00A6DE -->
-<body style="background-color:#FFFEF2; color: #208AD6">
+<!-- 
+	- lighter blue text color: 00A6DE 
+	- https://www.wpfaster.org/wp-content/uploads/2014/06/off-white-textured-background-1920x10802.jpg
+	- http://www.designbolts.com/wp-content/uploads/2012/12/Skeletal-Weave-White-Tileable-pattern-for-website-background.jpg
+	- favorite: http://www.designbolts.com/wp-content/uploads/2012/12/Grey-Jean-White-Seamless-Patterns-For-Website-Backgrounds.jpg
+-->
+
+<body style="background-image: url('/assets/app_background_white_jean.jpg'); color: #208AD6">
   <div class="header">
     <%=render 'layouts/navbar'%>
   </div>
   <div class="body">
     <%= yield %>
   </div>
-  <%=render 'layouts/footer' unless @disable_foot %>
+  	<%=render 'layouts/footer' unless @disable_foot %>
 </body>
 </html>

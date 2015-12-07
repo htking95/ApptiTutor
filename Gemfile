@@ -36,13 +36,15 @@ gem 'bootstrap-sass', '~> 3.2.0.2'
 gem 'autoprefixer-rails'
 gem 'ratyrate'
 gem 'execjs'
-
 # gem 'therubyracer'
+gem 'searchkick'
+gem 'paperclip', '~> 4.1'
+gem 'devise_security_extension'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'searchkick'
 gem 'chosen-rails'
 
 

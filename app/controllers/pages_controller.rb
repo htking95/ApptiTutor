@@ -28,4 +28,10 @@ class PagesController < ApplicationController
   def disable_foot
     @disable_foot = true
   end
+
+  def redTo404
+    redirect_to '/pages/Error'
+  end
+  helper_method :redTo404
+  
 end
