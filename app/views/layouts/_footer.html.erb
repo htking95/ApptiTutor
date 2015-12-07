@@ -1,9 +1,54 @@
-<div class="footer">
-	<div>
-	  <div align="center" style="color:#208AD6; font-size: large; text-shadow: 0px 0px 6px black">
-          Have questions? Check out our <a href="/ContactUs" style="color:white; text-decoration:underline">FAQ!</a><br>
-          If you still have questions, <a href="/ContactUs" style="color:white; text-decoration:underline">Contact Us!</a>
-	  </div>
-	</div>
-	<br>
+<style>
+* {margin:0;padding:0;} 
+html, body {height: 110%;}
+#wrap {min-height: 110%;}
+
+#main {
+  overflow:auto;
+  padding-bottom: 180px; /* must be same height as the footer */
+}
+
+#footer {
+  position: relative;
+  margin-top: -180px; /* negative value of footer height */
+  height: 180px;
+  clear:both;
+  background-color: #000000;
+} 
+
+/*Opera Fix thanks to Maleika (Kohoutec)*/
+body:before {
+  content:"";
+  height:100%;
+  float:left;
+  width:0;
+  margin-top:-32767px;/* thank you Erik J - negate effect of float*/
+}
+
+#footer p {
+	color: #D6D6D6;	
+}
+</style>
+
+<div id="footer">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+			  <div align="center" style="color:#208AD6; font-size: large; text-shadow: 0px 0px 6px black">
+		          Have questions? Check out our <a href="/ContactUs" style="color:white; text-decoration:underline">FAQ!</a><br>
+		          If you still have questions, <a href="/ContactUs" style="color:white; text-decoration:underline">Contact Us!</a>
+			  </div>
+			</div>
+			<div class="col-md-4"></div>
+		</div> <!-- Row -->
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<p align="center"><strong> A website designed and created by Himal King, Daniel Cruz, Nick Schumacher, Michelle Young, and Josh Stuckey </p>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div> <!-- Container -->
+
 </div>
