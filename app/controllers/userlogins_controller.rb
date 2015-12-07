@@ -10,8 +10,9 @@ class UserloginsController < ApplicationController
   	end
 
   	def search
-  		if params[:search].present?
+  		if params[:search].present? || params[:price].present?
   			@userlogins = Userlogin.search params[:search], fields:[{aboutMe: :word_start}, {email: :word_start}, {classes: :word_start}, {skills: :word_start}]
+        @userlogins = Userlogin.where(price: params["price"]) if params[:price].present?
   		else
   			@userlogins = Userlogin.all
   		end

@@ -25,6 +25,13 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
           You will be able to apply filters to narrow your search <br>
           <b>[] rating  [] age   [] gender   [] price</b><br>
           (what do we mean by class? You search via class...)
+          <div class="filter">
+            <%= form_tag search_userlogins_path, method: :get do %>
+              <%= label_tag :price %>
+              <%= text_field_tag :price %>
+              <%= submit_tag "Search", name: nil%>
+            <% end %>
+          </div>
         </div>
       </div>
 
