@@ -1,5 +1,5 @@
 require 'csv'
-begin class SkillsController < ApplicationController
+class SkillsController < ApplicationController
   before_action :set_skill, only: [:show, :edit, :update, :destroy]
 
 csv_text = File.read('SkillsList.csv')
