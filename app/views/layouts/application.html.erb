@@ -17,14 +17,18 @@
 	- http://www.designbolts.com/wp-content/uploads/2012/12/Skeletal-Weave-White-Tileable-pattern-for-website-background.jpg
 	- favorite: http://www.designbolts.com/wp-content/uploads/2012/12/Grey-Jean-White-Seamless-Patterns-For-Website-Backgrounds.jpg
 -->
+<div id="wrap">
+  <div id="main">
+    <body style="background-image: url('/assets/app_background_white_jean.jpg'); color: #208AD6">
+      <div class="header">
+        <%=render 'layouts/navbar'%>
+      </div>
+      <div class="body">
+        <%= yield %>
+      </div>
+    </body>
+  </div>
+</div>
+<%=render 'layouts/footer' unless @disable_foot %>
 
-<body style="background-image: url('/assets/app_background_white_jean.jpg'); color: #208AD6">
-  <div class="header">
-    <%=render 'layouts/navbar'%>
-  </div>
-  <div class="body">
-    <%= yield %>
-  </div>
-  	<%=render 'layouts/footer' unless @disable_foot %>
-</body>
 </html>
