@@ -8,6 +8,7 @@
   <script>
     $(document).ready(function(){
         $('[data-toggle="popover"]').popover(); 
+        $("#selector").select2();
     });
 
     $('#messageModal').on('shown.bs.modal', function () {
@@ -166,9 +167,9 @@
 
             <div class="modal-body">
               <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>    
-                <div class="form-group">   
+                <div class="form-group" style="pointer-events:none;">   
                   <%= f.label :recipient %>   
-                  <%= f.text_field :recipients, :readonly => true , :value =>  @userprofile.email, class: "form-control" %>    
+                   <%= f.select(:recipients, Userlogin.all.collect {|p| [ p.email , p.id ] }, {:selected => [@userprofile.email, @userprofile.id]}, { multiple: true , id: "selector"})%>  
                 </div>
                 <div class="form-group">   
                   <%= f.label :subject %>    
