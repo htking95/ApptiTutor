@@ -1,0 +1,192 @@
+<!--<html>
+	<head>
+		<script src="test.js"></script>
+	</head>
+	<div style="parentContainer">
+  	<div style="titleContainer" onclick="toggleContents(this)">Link to 	click on</div>
+  	<div style="contentContainer">Some content here.</div>
+	</div>
+</html>
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Latest compiled and minified CSS -->
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	</head>
+
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingOne">
+	      <h4 class="panel-title">
+	        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+	          How can I sign up to be a tutor?
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+	      <div class="panel-body">
+	        Sign up, then go to the Profile drop down in the top right. Click Edit Profile, and then check mark the box that says Is tutor. Input your current password and then click the Update button to save changes.
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingTwo">
+	      <h4 class="panel-title">
+	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+	          How can I close my account?
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+	      <div class="panel-body">
+	        Go to the Edit Profile page from the Profile drop down box at the top right. At the bottom of the page, click the red "Cancel my account" button.
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingThree">
+	      <h4 class="panel-title">
+	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+	          How can students leave me a review? How do I get reviews?
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+	      <div class="panel-body">
+	        Students can log in, search for your profile, and then leave a review on your profile page.
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingFour">
+	      <h4 class="panel-title">
+	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+	          What is my username or password? How do I retrieve my lost username or password?
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+	      <div class="panel-body">
+	        On the log in page, click the "Forgot your password?" link at the bottom. Type in your email and then click the "Send me reset password instructions" button. Go to your email. If it doesn't show up, check your spam and make sure you typed in the right address. Once you recieve the email, click the "Change my password" link. Type in your new password, and then type it in again to confirm it. Then click "Change my password."
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingFive">
+	      <h4 class="panel-title">
+	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+	          Why isn't my profile showing up when I search for it?
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+	      <div class="panel-body">
+	        You have to be a tutor to have a publicly searchable profile page.
+	      </div>
+	    </div>
+	  </div>
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingSix">
+	      <h4 class="panel-title">
+	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+	          What should I do if the student refuses to pay?
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+	      <div class="panel-body">
+	        Follow up with a message to politely request payment to remind them. Perhaps the best way to avoid non-payment is to never do more than one hour of tutoring with a new client before getting paid. Be more cautious with students who contact you asking for "last minute" help before their test tomorrow, or students who email you their assignment, essentially asking you to do it for them. Ultimately, though, ApptiTutor is not responsible for loss of time or money.
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingSeven">
+	      <h4 class="panel-title">
+	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+	          I'm an international student, can I be a tutor with my F1/J1/M1 student visa?
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+	      <div class="panel-body">
+	        ApptiTutor does not actually hire tutors as employees, independent contractors, or otherwise so we can't answer this question. We simply provide a website where people can find each other so how you use the service is up to you as long as you do so within the law.
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingEight">
+	      <h4 class="panel-title">
+	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+	          How do I get paid?
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+	      <div class="panel-body">
+	        You get paid directly by the student. ApptiTutor is not involved in any transactions between tutors and students. Note that since you are not being paid through ApptiTutor, you are not an employee or independent contractor of ApptiTutor and we will not withhold or report any taxes for you. It's up to you to track this as a self-employed person.
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingNine">
+	      <h4 class="panel-title">
+	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+	          Do I have to have a profile photo?
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
+	      <div class="panel-body">
+	        No, you do not. However, your profile may appear incomplete or otherwise negative to clients if it is missing a photo or any information.
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingTen">
+	      <h4 class="panel-title">
+	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+	          A student is being difficult.
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTen">
+	      <div class="panel-body">
+	        Through ApptiTutor, you're running your own business. ApptiTutor does not tell you who you have to work with.
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingEleven">
+	      <h4 class="panel-title">
+	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+	          How can I promote my tutoring profile on ApptiTutor?
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven">
+	      <div class="panel-body">
+	        We do not offer any sort of featured or promoted status to tutors with ApptiTutor. To help your profile stand out to clients, make sure you have a complete, public profile with a professional photograph and clear language throughout.
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</html>

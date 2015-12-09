@@ -30,6 +30,8 @@ resources :favorite_userlogins, only: [:create, :destroy]
 
   get 'pages/Home'
 
+  get 'pages/FAQ'
+
   get 'pages/Messaging'
 
   get 'pages/Favorites'

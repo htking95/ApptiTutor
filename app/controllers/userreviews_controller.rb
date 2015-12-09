@@ -28,7 +28,7 @@ class UserreviewsController < ApplicationController
 
     respond_to do |format|
       if @userreview.save
-        format.html { redirect_to @userreview, notice: 'Userreview was successfully created.' }
+        format.html { redirect_to :back, notice: 'Userreview was successfully created.' }
         format.json { render :show, status: :created, location: @userreview }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class UserreviewsController < ApplicationController
   def update
     respond_to do |format|
       if @userreview.update(userreview_params)
-        format.html { redirect_to @userreview, notice: 'Userreview was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Userreview was successfully updated.' }
         format.json { render :show, status: :ok, location: @userreview }
       else
         format.html { render :edit }
