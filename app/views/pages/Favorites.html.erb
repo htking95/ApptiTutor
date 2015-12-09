@@ -97,7 +97,8 @@
 
                   <div class="modal-body">
                     <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>    
-                      <div class="form-group"  style="pointer-events:none;">   
+
+                      <div class="form-group"  style="display: none;">   
                         <%= f.label :recipient %>   
                         <%= f.select(:recipients, Userlogin.all.collect {|p| [ p.email , p.id ] }, {}, { multiple: true , id: "conversation_recipients"})%>    
                       </div>
