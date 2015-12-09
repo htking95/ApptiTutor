@@ -141,6 +141,8 @@
                     <% end %>
                   </div>
             </div>
+
+              <% if current_userlogin != @userprofile then %>
                 <div class="panel panel-default target">
                   <div class="panel-heading" contenteditable="false">Write a Review</div>
                   <div class="panel-body">
@@ -151,6 +153,7 @@
                   </div> 
                 </div>    
               </div>
+              <% end %>
             </div>
           </div>
         <% end %>
