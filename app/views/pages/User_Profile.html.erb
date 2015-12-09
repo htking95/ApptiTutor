@@ -67,6 +67,7 @@
             </div>
           
             <% if @userprofile.isTutor? %>
+            <% if @userprofile != current_userlogin then %>
               <ul class="list-group">
                   <li class="list-group-item text-muted">Ratings</li>
                   <li class="list-group-item text-right"><span class="pull-left"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></span>
@@ -96,6 +97,43 @@
                     cancel_off: "blank.jpg",
                     cancel_on: "blank.jpg" %></li>
               </ul>
+              <% else %>
+                    <ul class="list-group">
+                  <li class="list-group-item text-muted">Ratings</li>
+                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></span>
+                    <div style="pointer-events: none;">                    
+                    <%= rating_for @userprofile, "clarity", disable_after_rate: false, 
+                    imdb_avg: true,
+                    cancel_off: "blank.jpg",
+                    cancel_on: "blank.jpg" %>
+                    </div>
+                  </li>
+                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Knowledge </strong><span class="glyphicon glyphicon-info-sign"></span></span> 
+                    <div style="pointer-events: none;">
+                    <%= rating_for @userprofile, "knowledge", disable_after_rate: false, 
+                    imdb_avg: true,
+                    cancel_off: "blank.jpg",
+                    cancel_on: "blank.jpg" %>
+                    </div>
+                  </li>
+                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Politeness </strong><span class="glyphicon glyphicon-info-sign"></span></span>
+                    <div style="pointer-events: none;">
+                    <%= rating_for @userprofile, "politeness", disable_after_rate: false, 
+                    imdb_avg: true,
+                    cancel_off: "blank.jpg",
+                    cancel_on: "blank.jpg" %>
+                    </div>
+                  </li>
+                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Flexibility </strong><span class="glyphicon glyphicon-info-sign"></span></span>
+                    <div style="pointer-events: none;">
+                    <%= rating_for @userprofile, "flexibility", disable_after_rate: false, 
+                    imdb_avg: true,
+                    cancel_off: "blank.jpg",
+                    cancel_on: "blank.jpg" %>
+                    </div>
+                  </li>
+              </ul>
+              <% end %>
           </div>
         <% end %>
 
