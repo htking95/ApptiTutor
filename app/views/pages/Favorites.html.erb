@@ -33,6 +33,7 @@
     <script>
     $(document).ready(function(){
         $('[data-toggle="popover"]').popover(); 
+        $("#conversation_recipients").select2();
     });
 
     $('#messageModal').on('shown.bs.modal', function () {
@@ -49,7 +50,7 @@
        fav_id = fav.getAttribute("data-fav-id");
        fav_first = fav.getAttribute("data-fav-first");
        fav_last = fav.getAttribute("data-fav-last");
-       document.getElementById("conversation_recipients").value = window.fav_email;
+       $('#conversation_recipients').val(window.fav_id).change();
        document.getElementById("modal_title").innerHTML = "Send " + window.fav_first + " " + window.fav_last + " a message";       
     }
     
@@ -96,9 +97,9 @@
 
                   <div class="modal-body">
                     <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>    
-                      <div class="form-group">   
+                      <div class="form-group"  style="pointer-events:none;">   
                         <%= f.label :recipient %>   
-                        <%= f.text_field :recipients, :readonly => true , class: "form-control" %>    
+                        <%= f.select(:recipients, Userlogin.all.collect {|p| [ p.email , p.id ] }, {}, { multiple: true , id: "conversation_recipients"})%>    
                       </div>
                       <div class="form-group">   
                         <%= f.label :subject %>    
