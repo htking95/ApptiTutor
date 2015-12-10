@@ -20,15 +20,21 @@
         });
 
         $('#course_selector').select2({
-          data : Course.all.collect {|p| [ p.subject + " " + p.course_Num ] }
           placeholder : "Select class(es)",
           cache : true,
           delay : 250,
           dropdownAutoWidth : true,
-          tags : true,
           tokenSeparators: [','],
           minimumInputLength : 1
-        })
+        });
+        $('#skill_selector').select2({
+          placeholder : "Select skill(s)",
+          cache : true,
+          delay : 250,
+          dropdownAutoWidth : true,
+          tags : true,
+          tokenSeparators: [',']
+        });
 
     });
   </script>
@@ -96,14 +102,17 @@
                 <div class="col-sm-6" style="" contenteditable="false">
                     <div class="panel panel-default">
                         <div class="panel-heading">My Skills</div>
-                        <div class="panel-body"><%= f.select(:skills, "nothing", {:selected => "nothing"}, { multiple: true , id: "selector"})%>
+                        <%= current_userlogin.skills %>
+                        <div class="panel-body"><%= f.select(:skills, Skill.all.collect {|p| [p.skillCol] }, {}, { multiple: true , id: "skill_selector"})%>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6" style="" contenteditable="false">
                     <div class="panel panel-default">
                         <div class="panel-heading">Classes I Know</div>
-                        <div class="panel-body"><%= f.select(:classes, "nothing", {}, { multiple: true , id: "course_selector"})%></div>
+                        <%= current_userlogin.classes %>
+                        <div class="panel-body"><%= f.select(:classes, Course.all.collect {|p| [p.subject + " " + p.course_Num] }, {:selected => ["","MA 26500","MA 26100"]}, { multiple: true , id: "course_selector"})%>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-12" contenteditable="false">
