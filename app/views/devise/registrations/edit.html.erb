@@ -24,7 +24,7 @@
           cache : true,
           delay : 250,
           dropdownAutoWidth : true,
-          tokenSeparators: [','],
+          tokenSeparators: [',', ' '],
           minimumInputLength : 1
         });
         $('#skill_selector').select2({
@@ -32,10 +32,10 @@
           cache : true,
           delay : 250,
           dropdownAutoWidth : false,
-          tokenSeparators: [','],
-          tags : true,
+          tokenSeparators: [',', ' '],
           minimumInputLength : 1
         });
+        $("div").removeClass("invisible");
 
     });
   </script>
@@ -48,38 +48,55 @@
     .button_to div {
       display: inline;
     }
+
+    .invisible{
+      visibility: hidden;
+    }
+    #namediv{
+        padding-top: 20px;
+    }
+
   </style>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
 <div class="container target">
     <div class="row">
-        <div class="col-sm-10">
-             <h1 style="text-transform:capitalize;" class=""><% if current_userlogin.first.blank? && current_userlogin.last.blank?%>Nicolas Cage<% end %><%= current_userlogin.first %> <%= current_userlogin.last %></h1>
+        <div class="col-sm-6 col-xs-5">
+            <div id="namediv">
+              <%= f.label :First,"First Name:", class: "pull-left" %>
+              <%= f.text_field :first, autocomplete: "off", class: "form-control name" %>
+              <%= f.label :Last, "Last Name:", class: "pull-left" %>
+              <%= f.text_field :last, autocomplete: "off", class: "form-control name" %>
+            </div>
         </div>
-
         <div class="col-sm-2">
-          <img title="profile image" class="img-rounded img-responsive pull-right" src="<%= current_userlogin.avatar.url(:medium) %>">
+        </div> 
+        <div class="col-sm-4 col-xs-5">
+          <img title="profile image" class="img-rounded img-responsive pull-left" src="<%= current_userlogin.avatar.url(:medium) %>">
           <br>
+          <div>
            <%= f.file_field :avatar %>
+          </div>
         </div>
 
     </div>
     <br>
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-6 col-md-3">
             <!--left col-->
             <ul class="list-group">
                 <li class="list-group-item text-muted" contenteditable="false">Profile</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= current_userlogin.created_at.strftime("%F") %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span><%= current_userlogin.last_sign_in_at.strftime("%F") %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender</strong></span>
-                  <%= f.select(:gender, ["Male","Female","Other"], {}, { multiple: false , id: "gender_selector"})%></li>
-                <li class="list-group-item text-right"><span><p style="display:block;"><strong>Birthday</strong></p></span><%= f.date_select :birthday, { :start_year => 1920, :end_year => 2015 },{class: "birthday_selector", prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }}%></li>
+                  <%= f.select(:gender, ["Male","Female","Other"], {}, { class: "invisible", multiple: false , id: "gender_selector"})%></li>
+                <li class="list-group-item"><span><p style="display:block;"><strong>Birthday</strong></p></span><%= f.date_select :birthday, { :start_year => 1920, :end_year => 2015 },{class: "birthday_selector invisible", prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }}%></li>
             </ul>
 
              <div class="panel panel-default">
                <div class="panel-heading">Pricing</div>
-               <div class="panel-body"><% if current_userlogin.price.blank? %>Not provided<% end %><%= current_userlogin.price %></div>
+               <div class="panel-body invisible"><%= f.text_field :price, placeholder: 'Enter just a number (ex. 20, 30, 45, etc...)', autocomplete: "off", class: "form-control" %>
+               </div>
              </div>
 
             <div class="panel panel-default">
@@ -93,10 +110,10 @@
           </div>
 
         <!--/col-3-->
-        <div class="col-sm-9" style="" contenteditable="false">
+        <div class="col-sm-6 col-md-9" style="" contenteditable="false">
             <div class="panel panel-default">
                 <div class="panel-heading">About Me!</div>
-                <div class="panel-body"><%= f.text_field :aboutMe, autocomplete: "off", class: "form-control" %></div>
+                <div class="panel-body invisible"><%= f.text_field :aboutMe, autocomplete: "off", class: "form-control" %></div>
             </div>
 
               <div class="row">
@@ -104,7 +121,8 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">My Skills</div>
                         <% selectedSkills = current_userlogin.parse_database_tags(current_userlogin.skills) %>
-                        <div class="panel-body"><%= f.select(:skills, Skill.all.collect {|p| [p.skillCol] }, {:selected => selectedSkills}, { style: "width: 100%;" ,multiple: true , id: "skill_selector"})%>
+                        <div class="panel-body invisible">
+                          <%= f.select(:skills, Skill.all.collect {|p| [p.skillCol] }, {:selected => selectedSkills}, { style: "width: 100%;" ,multiple: true , id: "skill_selector"})%>
                         </div>
                     </div>
                 </div>
@@ -112,7 +130,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">Classes I Know</div>
                         <% selectedClasses = current_userlogin.parse_database_tags(current_userlogin.classes) %>
-                        <div class="panel-body"><%= f.select(:classes, Course.all.collect {|p| [p.subject + " " + p.course_Num] }, {:selected => selectedClasses}, { style: "width: 100%", multiple: true , id: "course_selector"})%>
+                        <div class="panel-body invisible"><%= f.select(:classes, Course.all.collect {|p| [p.subject + " " + p.course_Num] }, {:selected => selectedClasses}, { style: "width: 100%", multiple: true , id: "course_selector"})%>
                         </div>
                     </div>
                 </div>
@@ -138,7 +156,7 @@
       <% end %>
 
 
-
+<!--
 
 <div class="container-fluid">
   <h2>Edit <%= resource_name.to_s.humanize %></h2>
@@ -242,3 +260,4 @@
 
   <%= link_to "Back", :back %>
 </div>
+-->
