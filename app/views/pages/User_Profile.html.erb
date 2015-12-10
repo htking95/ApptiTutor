@@ -36,8 +36,9 @@
           <% end %>
         </div>
 
-        <!-- These cols are for the profile picture  -->
-        <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-rounded img-responsive" src="<%= @userprofile.avatar.url(:medium) %>"></a>
+
+        <div class="col-sm-2"><img title="profile image" class="img-rounded img-responsive pull-right" src="<%= @userprofile.avatar.url(:medium) %>">
+
         </div>
     </div>
 
@@ -206,11 +207,25 @@
           <h2 class="modal-title">Send <% if @userprofile.first.blank? && @userprofile.last.blank?%>Nicolas Cage<% end %><%= @userprofile.first %> <%= @userprofile.last %> a message</h2>
         </div>
 
-        <div class="modal-body">
-          <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>    
-            <div class="form-group" style="pointer-events:none;">   
-              <%= f.label :recipient %>   
-               <%= f.select(:recipients, Userlogin.all.collect {|p| [ p.email , p.id ] }, {:selected => [@userprofile.email, @userprofile.id]}, { multiple: true , id: "selector"})%>  
+
+            <div class="modal-body">
+              <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>    
+                <div class="form-group"  style="display: none;">   
+                  <%= f.label :recipient %>   
+                  <%= f.select(:recipients, Userlogin.all.collect {|p| [ p.email , p.id ] }, {:selected => [@userprofile.email, @userprofile.id]}, { multiple: true , id: "selector"})%>  
+
+                </div>
+                <div class="form-group">   
+                  <%= f.label :subject %>    
+                  <%= f.text_field :subject, placeholder: "I'd like you to tutor me!", class: "form-control" %>    
+                </div>   
+                <div class="form-group">   
+                  <%= f.label :message %>    
+                  <%= f.text_area :body, class: 'form-control',placeholder: "I need help with this class, this class, and this class. When would you be free to help?", rows: 4  %>    
+                </div>   
+                <%= f.submit "Send Message", class: "btn btn-success" %>   
+              <% end %>
+
             </div>
             <div class="form-group">   
               <%= f.label :subject %>    
