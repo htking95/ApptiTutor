@@ -31,7 +31,7 @@
           placeholder : "Select skill(s)",
           cache : true,
           delay : 250,
-          dropdownAutoWidth : true,
+          dropdownAutoWidth : false,
           tokenSeparators: [','],
           tags : true,
           minimumInputLength : 1
@@ -100,21 +100,19 @@
             </div>
 
               <div class="row">
-                <div class="col-sm-6" style="" contenteditable="false">
+                <div class="col-sm-12" style="" contenteditable="false">
                     <div class="panel panel-default">
                         <div class="panel-heading">My Skills</div>
-                        <%= current_userlogin.skills %>
                         <% selectedSkills = current_userlogin.parse_database_tags(current_userlogin.skills) %>
-                        <div class="panel-body"><%= f.select(:skills, Skill.all.collect {|p| [p.skillCol] }, {:selected => selectedSkills}, { multiple: true , id: "skill_selector"})%>
+                        <div class="panel-body"><%= f.select(:skills, Skill.all.collect {|p| [p.skillCol] }, {:selected => selectedSkills}, { style: "width: 100%;" ,multiple: true , id: "skill_selector"})%>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6" style="" contenteditable="false">
+                <div class="col-sm-12" style="" contenteditable="false">
                     <div class="panel panel-default">
                         <div class="panel-heading">Classes I Know</div>
                         <% selectedClasses = current_userlogin.parse_database_tags(current_userlogin.classes) %>
-                        <%= current_userlogin.classes %>
-                        <div class="panel-body"><%= f.select(:classes, Course.all.collect {|p| [p.subject + " " + p.course_Num] }, {:selected => selectedClasses}, { multiple: true , id: "course_selector"})%>
+                        <div class="panel-body"><%= f.select(:classes, Course.all.collect {|p| [p.subject + " " + p.course_Num] }, {:selected => selectedClasses}, { style: "width: 100%", multiple: true , id: "course_selector"})%>
                         </div>
                     </div>
                 </div>
