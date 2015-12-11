@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:600' rel='stylesheet' type='text/css'>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script type="text/javascript" scr="javascripts/jquery.raty.js"></script>
   <script type="text/javascript" scr="javascripts/ratyrate.js.erb"></script>
@@ -12,6 +13,13 @@
   <link rel="shortcut icon" type="image/x-icon" href="/assets/apptitutor-2.png" />
   <title>ApptiTutor</title>
   <%= yield :javascript_includes %>
+
+  <style>
+  .body {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: normal;
+  }
+  </style>
 </head>
 <%= yield :javascript_includes %>
 <!-- 

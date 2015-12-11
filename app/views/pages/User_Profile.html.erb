@@ -47,7 +47,7 @@
         <div class="col-sm-3">
             <!--left col-->
             <ul class="list-group">
-                <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+                <li class="list-group-item text-muted" contenteditable="false" style="background-color:#F0F0F0; color: black">Profile</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= @userprofile.created_at.strftime("%F") %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen </strong></span><%= @userprofile.last_sign_in_at.strftime("%F") %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender</strong></span><% if @userprofile.gender.blank? %>Not given<% end %>
@@ -58,7 +58,7 @@
             <% if @userprofile.isTutor? %>
              <div class="panel panel-default">
                <div class="panel-heading">Pricing</div>
-               <div class="panel-body"><% if @userprofile.price.blank? %>Not provided<% end %><%= @userprofile.price %></div>
+               <div class="panel-body"><% if @userprofile.price.blank? %>Not provided<%else%>$<%= @userprofile.price %><%end%></div>
              </div>
             <% end %>
 
@@ -70,7 +70,7 @@
             <% if @userprofile.isTutor? %>
             <% if @userprofile != current_userlogin then %>
               <ul class="list-group">
-                  <li class="list-group-item text-muted">Ratings</li>
+                  <li class="list-group-item text-muted" contenteditable="false" style="background-color:#F0F0F0; color: black">Ratings</li>
                   <li class="list-group-item text-right"><span class="pull-left"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></span>
                     
                     <%= rating_for @userprofile, "clarity", disable_after_rate: false, 
@@ -100,7 +100,7 @@
               </ul>
               <% else %>
                     <ul class="list-group">
-                  <li class="list-group-item text-muted">Ratings</li>
+                  <li class="list-group-item text-muted" contenteditable="false" style="background-color:#F0F0F0; color: black">Ratings</li>
                   <li class="list-group-item text-right"><span class="pull-left"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></span>
                     <div style="pointer-events: none;">                    
                     <%= rating_for @userprofile, "clarity", disable_after_rate: false, 
@@ -141,8 +141,8 @@
         <!--/col-3-->
         <div class="col-sm-9" style="" contenteditable="false">
             <div class="panel panel-default">
-                <div class="panel-heading">About Me!</div>
-                <div class="panel-body"><% if @userprofile.aboutMe.blank? %>Who am i?? If you'd like to know more, send me a message!<% end %><%= @userprofile.aboutMe %></div>
+                <div class="panel-heading">About Me</div>
+                <div class="panel-body"><% if @userprofile.aboutMe.blank? %>Who am I? Your next tutor! If you'd like to know more, send me a message!<% end %><%= @userprofile.aboutMe %></div>
             </div>
 
             <% if @userprofile.isTutor? %>
