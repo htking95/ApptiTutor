@@ -1,7 +1,9 @@
 class Userlogin < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  searchkick word_start: [:email, :skills, :classes, :first, :last]
+
+  # :confirmable, :lockable, :timeoutable and :omniauthable 
+  searchkick word_start: [:email, :skills, :classes, :price, :gender, :first, :last]
+
   def search_data 
     {
     email: email,
@@ -9,8 +11,13 @@ class Userlogin < ActiveRecord::Base
     classes: classes,
     first: first,
     last: last
+    price: price,
+    gender: gender,
+    ratings: ratings,
+    age: age
   }
   end
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -58,6 +65,21 @@ class Userlogin < ActiveRecord::Base
     else
     now = Time.now.utc.to_date
     now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
+    end
+  end
+
+  def average_rate
+    ratings = Rate.where(rateable_id: self.id)
+    total = 0
+    count = 0
+    ratings.each do |rate|
+      total = total + rate.stars
+      count = count + 1
+    end
+    if count != 0
+      return total/count
+    else
+      return 0
     end
   end
 
