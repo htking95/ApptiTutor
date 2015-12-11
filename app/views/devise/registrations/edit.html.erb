@@ -93,7 +93,10 @@
     </div>
              <div class="panel panel-default">
                <div class="panel-heading">Pricing</div>
-               <div class="panel-body invisible"><%= f.text_field :price, placeholder: 'Enter just a number (ex. 20, 30, 45, etc...)', autocomplete: "off", class: "form-control" %>
+               <div class="panel-body invisible">
+                <div class="input-group-addon">$</div>
+                <%= f.text_field :price, placeholder: 'Enter just a number (ex. 20, 30, 45, etc...)', autocomplete: "off", class: "form-control" %>
+                <div class="input-group-addon">.00</div>
                </div>
              </div>
 
