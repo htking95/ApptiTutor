@@ -16,8 +16,5 @@
 //= require jquery.raty
 //= require bootstrap-sprockets
 //= require_tree .
-//= require jquery_ujs
 //= require chosen-jquery
 //= require turbolinks
-//= require_tree 
-//= require scaffold
