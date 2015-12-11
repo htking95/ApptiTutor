@@ -70,6 +70,7 @@
             </div>
           
             <% if @userprofile.isTutor? %>
+            <% @userprofile.update_attributes(:ratings => @userprofile.average_rate) %>
             <% if @userprofile != current_userlogin then %>
               <ul class="list-group">
                   <li class="list-group-item text-muted">Ratings</li>
