@@ -101,8 +101,9 @@
       <%= f.check_box :isTutor, autocomplete: "off" %>
     </div>
              <div class="panel panel-default">
-               <div class="panel-heading">Pricing</div>
-               <div class="panel-body invisible"><%= f.text_field :price, placeholder: 'Enter just a number (ex. 20, 30, 45, etc...)', autocomplete: "off", class: "form-control" %>
+               <div class="panel-heading">Pricing ($/hr)</div>
+               <div class="panel-body invisible">
+                <%= f.text_field :price, placeholder: 'Enter just a number (ex. 20, 30, 45, etc...)', autocomplete: "off", class: "form-control" %>
                </div>
              </div>
 

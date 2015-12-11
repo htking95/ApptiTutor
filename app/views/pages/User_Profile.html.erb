@@ -52,9 +52,10 @@
         <div class="col-sm-3">
             <!--left col-->
             <ul class="list-group">
-                <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+                <li class="list-group-item text-muted" contenteditable="false" style="background-color:#F0F0F0; color: black">Profile</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= @userprofile.created_at.strftime("%D") %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span><%= @userprofile.last_sign_in_at.strftime("%D") %></li>
+
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender</strong></span><% if @userprofile.gender.blank? %>Not given<% end %>
                   <%= @userprofile.gender %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Age </strong></span><% if @userprofile.calculate_age(@userprofile.birthday) == 0%> Not given <% else %><%= @userprofile.calculate_age(@userprofile.birthday) %><% end %></li>
@@ -63,7 +64,7 @@
             <% if @userprofile.isTutor? %>
              <div class="panel panel-default">
                <div class="panel-heading">Pricing</div>
-               <div class="panel-body"><% if @userprofile.price.blank? %>Not provided<% end %><%= @userprofile.price %></div>
+               <div class="panel-body"><% if @userprofile.price.blank? %>Not provided<%else%>$<%= @userprofile.price %><%end%></div>
              </div>
             <% end %>
 
@@ -73,8 +74,12 @@
             </div>
           
             <% if @userprofile.isTutor? %>
+            <% @userprofile.update_column(:ratings, @userprofile.average_rate) %>
+
+            <% @userprofile.update_column(:age, @userprofile.calculate_age(@userprofile.birthday)) %>
             <% if @userprofile != current_userlogin then %>
               <ul class="list-group">
+
                   <li class="list-group-item text-muted">Ratings</li>
                   
                   <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Clarity" data-content="How well was your tutor able to relay information?"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
@@ -115,6 +120,7 @@
                 <ul class="list-group">
                   <li class="list-group-item text-muted">Ratings</li>
                   <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Clarity" data-content="How well was your tutor able to relay information?"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
+
                     <div style="pointer-events: none;">                    
                     <%= rating_for @userprofile, "clarity", disable_after_rate: false, 
                     imdb_avg: true,
@@ -154,6 +160,7 @@
         <!--/col-3-->
         <div class="col-sm-9" style="" contenteditable="false">
             <div class="panel panel-default">
+
                 <div class="panel-heading">About Me!</div>
 
                 <div class="panel-body" id="about_me" data-about-me="<%=@userprofile.aboutMe%>"><% if @userprofile.aboutMe.blank? %>Who am i?? If you'd like to know more, send me a message!<% end %></div>
@@ -174,9 +181,11 @@
                             <%end%>
                           <% end %>
                         <%end%>
+
                         </div>
                     </div>
                 </div>
+
                 <div class="col-sm-6" style="" contenteditable="false">
                     <div class="panel panel-default">
                         <div class="panel-heading">Classes I Know</div>
@@ -193,6 +202,7 @@
                           <% end %>                        
                           <%end%>
                           </div>
+
                     </div>
                 </div>
               </div>
@@ -220,6 +230,7 @@
 
                           </div>
                       
+
                         </div>
                       </div>
                     <% end %>
