@@ -1,11 +1,10 @@
 class Userlogin < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  searchkick word_start: [:aboutMe, :email, :skills, :classes]
+  searchkick word_start: [:email, :skills, :classes]
   def search_data 
     {
     email: email,
-    aboutMe: aboutMe,
     skills: skills,
     classes: classes
   }
@@ -50,6 +49,19 @@ class Userlogin < ActiveRecord::Base
     else
     now = Time.now.utc.to_date
     now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
+    end
+  end
+
+  def parse_database_tags(list)
+    if(list.blank? || list == "[""]") then
+      return [""]
+    else
+      newlist = list.dup
+      newlist = newlist.gsub! '"',''
+      newlist.gsub! '[',''
+      newlist.gsub! ']',''
+      newlist = newlist.split(", ")
+      return newlist
     end
   end
 end

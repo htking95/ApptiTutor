@@ -33,6 +33,6 @@ def conversation
 
     def configure_permitted_parameters
         devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first, :last, :email, :password) }
-        devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :first, :last, :isTutor, :gender, :recieveReminders, :profilePicture, :isStudent, :aboutMe, :favoriteTutors, :classes, :price, :ratings, :reviews, :skills, :birthday, :questions1, :questions2, :answers1, :answers2, :avatar) }
+        devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :first, :last, :isTutor, :gender, :recieveReminders, :profilePicture, :isStudent, :aboutMe, :favoriteTutors, {:classes => []}, :price, :ratings, :reviews, {:skills => []}, :birthday, :questions1, :questions2, :answers1, :answers2, :avatar) }
     end
 end
