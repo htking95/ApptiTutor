@@ -39,6 +39,7 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'searchkick'
 gem 'paperclip', '~> 4.1'
+gem 'ckeditor'
 gem "paperclip-dropbox", ">= 1.1.7"
 gem 'figaro', '~> 1.0.0'
 gem 'devise_security_extension'
