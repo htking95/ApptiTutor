@@ -55,22 +55,42 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
             <div class="container searchResult" style=" box-shadow: 0px 1px 6px black; margin-bottom: 6px">
               <a href="../pages/User_Profile/<%= userlogin.id %>">
                 <div class="row">
+                  
                   <div class="col-xs-3" style="" align="center"> <img title="profile image" class="img-rounded img-responsive" style="min-height:20%" src="<%= userlogin.avatar.url(:medium) %>"></div>
+                  
                   <% if userlogin.first? %>
                     <div class="col-xs-9" style="font-size:x-large"><b><%= userlogin.first %> <%= userlogin.last %></b></div>
                   <% else %>
                     <div class="col-xs-9" style="font-size:x-large"><b>Name n/a</b></div>
                   <% end %>
+                  
                   <!--<div class="col-xs-4">&nbsp</div>-->
                   <div class="col-xs-9" style="font-size:large"><b><%= userlogin.email %></b></div>
+                  
                   <!--<div class="col-xs-4">&nbsp</div>-->
                   <div class="col-xs-3"><b>Gender:</b> <%= userlogin.gender %></div>
+                  
                   <div class="col-xs-3"><b>Age:</b><%= userlogin.calculate_age(userlogin.birthday) %></div>
+                  
                   <div class="col-xs-3"><b>Price:</b> <%= userlogin.price %></div>
+
                   <!--<div class="col-xs-4">&nbsp</div>-->
-                  <div class="col-xs-9"><b>Classes:</b> <%= userlogin.classes %></div>
+                  <div class="col-xs-9"><b>Classes:</b> <% courses = userlogin.parse_database_tags(userlogin.classes) %>
+                        <% courses.each do |s|%>
+                        <% if s.blank? %>
+                        <% else %>
+                          <%= s %><%= "," %>
+                        <%end%><%end%></div>
+
                   <!--<div class="col-xs-4">&nbsp</div>-->
-                  <div class="col-xs-9"><b>Skills:</b> <%= userlogin.skills %></div>
+                  <div class="col-xs-9"><b>Skills:</b>
+                   <% skills = userlogin.parse_database_tags(userlogin.skills) %>
+                        <% skills.each do |s|%>
+                          <% if s.blank? %>
+                        <% else %>
+                          <%= s %><%= "," %>
+                        <%end%><%end%></div>
+
                   <!--<div class="col-xs-4">&nbsp</div>-->
                   <div class="col-xs-9"><b>Bio:</b> <%= userlogin.aboutMe %></div>
                 </div>

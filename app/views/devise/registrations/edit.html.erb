@@ -18,13 +18,12 @@
           placeholder : "Select gender",
           dropdownAutoWidth : true
         });
-
         $('#course_selector').select2({
           placeholder : "Select class(es)",
           cache : true,
           delay : 250,
           dropdownAutoWidth : true,
-          tokenSeparators: [',', ' '],
+          tokenSeparators: [','],
           minimumInputLength : 1
         });
         $('#skill_selector').select2({
@@ -32,11 +31,10 @@
           cache : true,
           delay : 250,
           dropdownAutoWidth : false,
-          tokenSeparators: [',', ' '],
+          tokenSeparators: [','],
           minimumInputLength : 1
         });
         $("div").removeClass("invisible");
-
     });
   </script>
 
@@ -44,18 +42,15 @@
     .button_to {
       display: inline;
     }
-
     .button_to div {
       display: inline;
     }
-
     .invisible{
       visibility: hidden;
     }
     #namediv{
         padding-top: 20px;
     }
-
   </style>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
@@ -92,7 +87,10 @@
                   <%= f.select(:gender, ["Male","Female","Other"], {}, { class: "invisible", multiple: false , id: "gender_selector"})%></li>
                 <li class="list-group-item"><span><p style="display:block;"><strong>Birthday</strong></p></span><%= f.date_select :birthday, { :start_year => 1920, :end_year => 2015 },{class: "birthday_selector invisible", prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }}%></li>
             </ul>
-
+<div class="form-group">
+      <%= f.label :is_Tutor %><br>
+      <%= f.check_box :isTutor, autocomplete: "off" %>
+    </div>
              <div class="panel panel-default">
                <div class="panel-heading">Pricing</div>
                <div class="panel-body invisible"><%= f.text_field :price, placeholder: 'Enter just a number (ex. 20, 30, 45, etc...)', autocomplete: "off", class: "form-control" %>
@@ -157,40 +155,33 @@
 
 
 <!--
-
 <div class="container-fluid">
   <h2>Edit <%= resource_name.to_s.humanize %></h2>
   <p class = "notice"><%= notice %></p>
   <p class = "alert"><%= alert %></p>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
-
  <div class="form-group">
         <%= f.label :avatar, class: 'col-sm-2 control-label'  %>
         <div class="col-sm-6">
             <%= f.file_field :avatar %>
         </div>
     </div>
-
     <div class="form-group">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, class: "form-control" %>
     </div>
-
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
-
     <div class="form-group">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it!!)</i><br />
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
       <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
     </div>
-
     <div class="form-group">
       <%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
     </div>
-
     <div class="form-group">
       <%= f.label :first %>
       <%= f.text_field :first, autocomplete: "off", class: "form-control" %>
@@ -220,46 +211,36 @@
       <%= f.label :about_Me %><br />
       <%= f.text_field :aboutMe, autocomplete: "off", class: "form-control" %>
     </div>
-
 <% if current_userlogin.isTutor == true %>
     <div class="form-group">
       <%= f.label :classes %><br />
       <%= f.text_field :classes, autocomplete: "off", class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :price %><span style="margin-left: 8px">($/hr)</span>
-      <span class="input-group-addon">$</span>
+      <%= f.label :price %><span style="margin-left: 8px">($/hr)</span><br/>
       <%= f.text_field :price, placeholder: 'Enter just a number (ex. 20, 30, 45, etc...)', autocomplete: "off", class: "form-control" %>
-      <span class="input-group-addon">/hr</span>
     </div>
     <div class="form-group">
       <%= f.label :skills %><br />
       <%= f.text_field :skills, placeholder: "What skills do you have?", autocomplete: "off", class: "form-control"; %>
     </div>
 <% end %>
-
     <div class="form-group">
       <%= f.label :birthday %>
       <div class ="row">
       <%= f.date_select :birthday, { :start_year => 1920, :end_year => 2015 },prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, autocomplete: "off", class: "" %>
       </div>
     </div>
-
   <div class="form-group">
       <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
       <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
     </div>
-
-
     <div class="actions">
       <%= f.submit "Update", class: "btn btn-primary" %>
     </div>
   <% end %>
-
   <h3>Cancel my account</h3>
-
   <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
-
   <%= link_to "Back", :back %>
 </div>
 -->
