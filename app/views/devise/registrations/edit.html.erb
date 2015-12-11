@@ -10,8 +10,10 @@
         $('[data-toggle="popover"]').popover(); 
         $('.birthday_selector').each(function(){
             $(this).select2({
+
               dropdownAutoWidth : true
             });
+            
         });
         $('#gender_selector').select2({
           minimumResultsForSearch: Infinity,
@@ -35,6 +37,13 @@
           minimumInputLength : 1
         });
         $("div").removeClass("invisible");
+
+            if ($('textarea').length > 0) {
+                var data = $('textarea');
+                $.each(data, function(i) {
+                    CKEDITOR.replace(data[i].id);
+                });
+            }
     });
   </script>
 
@@ -111,7 +120,9 @@
         <div class="col-sm-6 col-md-9" style="" contenteditable="false">
             <div class="panel panel-default">
                 <div class="panel-heading">About Me!</div>
-                <div class="panel-body invisible"><%= f.text_field :aboutMe, autocomplete: "off", class: "form-control" %></div>
+                  <div class="invisible" >
+                    <%= f.text_area :aboutMe, :class => 'ckeditor' %>
+                  </div>
             </div>
 
               <div class="row">
