@@ -14,13 +14,13 @@
     <div class="form-group">
       <div class="field">
         <%= f.label :Overview %><br>
-        <%= f.text_field :name, class: 'form-control', placeholder: "They're pretty good", rows: 1  %>
+        <%= f.text_field :name, class: 'form-control', placeholder: "They're pretty good", :maxlength => "50",rows: 1  %>
       </div>
     </div>
     <div class="form-group">
       <div class="field">
         <%= f.label :Review %><br>
-        <%= f.text_area :body, class: 'form-control', placeholder: "They helped me with this, and seemed very intelligent and reasonable", rows: 4  %>
+        <%= f.text_area :body, class: 'form-control', placeholder: "They helped me with this, and seemed very intelligent and reasonable",:maxlength => "2000", rows: 4  %>
       </div>
       <%= f.hidden_field :userlogin_id %>
     </div>
