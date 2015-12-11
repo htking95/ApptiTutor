@@ -42,6 +42,8 @@
                 <%- else -%>
                 <%= button_to 'Unfavorite', favorite_userlogin_path(id: @userprofile.id), class: "btn btn-success", method: :delete %>
                 <%- end -%>
+              <% else %>
+                <a class="btn btn-info" href="/userlogins/edit" data-no-turbolink="true">Edit Profile</a>
               <%- end -%>
             <% end %>
         </div>
@@ -172,7 +174,7 @@
                 <div class="col-sm-6" style="" contenteditable="false" style="height:100%;">
                     <div class="panel panel-default">
                         <div class="panel-heading">My Skills</div>
-                        <div class="panel-body" style="width:100%;"><% if @userprofile.skills.blank? %>I swear I have mad skills. If you'd like to know more, send me a message!<% end %>
+                        <div class="panel-body" style="width:100%;"><% if @userprofile.parse_database_tags(@userprofile.skills).count < 2 %>I swear I have mad skills. If you'd like to know more, send me a message!<% end %>
                         <% skilz = @userprofile.parse_database_tags(@userprofile.skills) %>
                         <% skilz.each do |s|%>
                           <% if !s.blank? %>
@@ -190,7 +192,7 @@
                 <div class="col-sm-6" style="" contenteditable="false">
                     <div class="panel panel-default" style="height:100%">
                         <div class="panel-heading">Classes I Know</div>
-                        <div class="panel-body" style="height:100%"><% if @userprofile.classes != "[""]" %>School is for chumps. If you'd like to know more, send me a message!<% end %>
+                        <div class="panel-body" style="height:100%"><% if @userprofile.parse_database_tags(@userprofile.classes).count < 2 %>School is for chumps. If you'd like to know more, send me a message!<% end %>
                         <% course = @userprofile.parse_database_tags(@userprofile.classes) %>
                         <% course.each do |s|%>
                           <% if !s.blank? %>
