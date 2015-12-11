@@ -59,6 +59,17 @@ class Userlogin < ActiveRecord::Base
     end
   end
 
+  def average_rate
+    ratings = Rate.where(rateable_id: :self.id)
+    total = 0
+    count = 0
+    ratings.each do |rate|
+      total = total + rate.stars
+      count = count + 1
+    end
+    return total/count
+  end
+
   def parse_database_tags(list)
     if(list.blank? || list == "[""]") then
       return [""]
