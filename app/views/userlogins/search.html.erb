@@ -39,17 +39,19 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
               <%= check_box_tag :sort, "price", params[:price], class: "sex_check"%>
               <%= label_tag :ratings %>
               <%= check_box_tag :sort, "rating", params[:ratings], class: "sex_check"%>
+              <%= label_tag :age %>
+              <%= check_box_tag :sort, "age", params[:age], class: "sex_check"%>
               <%= label_tag :male %>
-              <%= check_box_tag :male, "Male", params[:male], class: "sex_check" %>
+              <%= check_box_tag :male, "Male", params[:male]%>
               <%= label_tag :female %>
-              <%= check_box_tag :female, "Female", params[:female], class: "sex_check" %>
+              <%= check_box_tag :female, "Female", params[:female] %>
               <%= submit_tag "Search", name: nil%>
             <% end %>
           </div>
         </div>
       </div>
 
-      <!-- This is here for spacing purposes -->
+      <!-- This is here for spacing purposes , class: "sex_check"-->
       <div style="height:3px"></div>
 
       <!-- 

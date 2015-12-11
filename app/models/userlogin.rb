@@ -9,7 +9,9 @@ class Userlogin < ActiveRecord::Base
     skills: skills,
     classes: classes,
     price: price,
-    gender: gender
+    gender: gender,
+    ratings: ratings,
+    age: age
   }
   end
 
@@ -64,14 +66,18 @@ class Userlogin < ActiveRecord::Base
   end
 
   def average_rate
-    ratings = Rate.where(rateable_id: :self.id)
+    ratings = Rate.where(rateable_id: self.id)
     total = 0
     count = 0
     ratings.each do |rate|
       total = total + rate.stars
       count = count + 1
     end
-    return total/count
+    if count != 0
+      return total/count
+    else
+      return 0
+    end
   end
 
   def parse_database_tags(list)
