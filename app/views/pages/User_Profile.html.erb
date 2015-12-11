@@ -52,9 +52,9 @@
         <div class="col-sm-3">
             <!--left col-->
             <ul class="list-group">
-                <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+                <li class="list-group-item text-muted" contenteditable="false" style="background-color:#F0F0F0; color: black">Profile</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= @userprofile.created_at.strftime("%F") %></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span><%= @userprofile.last_sign_in_at.strftime("%F") %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen </strong></span><%= @userprofile.last_sign_in_at.strftime("%F") %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender</strong></span><% if @userprofile.gender.blank? %>Not given<% end %>
                   <%= @userprofile.gender %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Age </strong></span><% if @userprofile.calculate_age(@userprofile.birthday) == 0%> Not given <% else %><%= @userprofile.calculate_age(@userprofile.birthday) %><% end %></li>
@@ -63,7 +63,7 @@
             <% if @userprofile.isTutor? %>
              <div class="panel panel-default">
                <div class="panel-heading">Pricing</div>
-               <div class="panel-body"><% if @userprofile.price.blank? %>Not provided<% end %><%= @userprofile.price %></div>
+               <div class="panel-body"><% if @userprofile.price.blank? %>Not provided<%else%>$<%= @userprofile.price %><%end%></div>
              </div>
             <% end %>
 
@@ -77,6 +77,7 @@
             <% @userprofile.update_column(:age, @userprofile.calculate_age(@userprofile.birthday)) %>
             <% if @userprofile != current_userlogin then %>
               <ul class="list-group">
+
                   <li class="list-group-item text-muted">Ratings</li>
                   <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
                     
@@ -107,8 +108,10 @@
               </ul>
               <% else %>
                     <ul class="list-group">
+
                   <li class="list-group-item text-muted">Ratings</li>
                   <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
+
                     <div style="pointer-events: none;">                    
                     <%= rating_for @userprofile, "clarity", disable_after_rate: false, 
                     imdb_avg: true,
@@ -148,6 +151,7 @@
         <!--/col-3-->
         <div class="col-sm-9" style="" contenteditable="false">
             <div class="panel panel-default">
+
                 <div class="panel-heading">About Me!</div>
 
                 <div class="panel-body" id="about_me" data-about-me="<%=@userprofile.aboutMe%>"><% if @userprofile.aboutMe.blank? %>Who am i?? If you'd like to know more, send me a message!<% end %></div>
@@ -158,21 +162,42 @@
                 <div class="col-sm-6" style="" contenteditable="false">
                     <div class="panel panel-default">
                         <div class="panel-heading">My Skills</div>
-                        <div class="panel-body"><% if @userprofile.skills.blank? %>I swear I have mad skills. If you'd like to know more, send me a message!<% end %>
-                        <% skilz = @userprofile.parse_database_tags(@userprofile.skills) %></div>
-                        <% skilz.each do |s|%>
-                          <%= s %>
-                        <%end%>
+                        <% if @userprofile.skills.blank? %>
+                        <div class="panel-body">
+                          I swear I have mad skills! If you'd like to know more, send me a message!
+                        </div>
+                        <% end %>
+                        <div style="padding:5px">
+                          <% skilz = @userprofile.parse_database_tags(@userprofile.skills) %>
+                          <% skilz.each do |s|%>
+                            <% if s.blank? %>
+                            <% else %>
+                              <%= s %><%= "," %>
+                            <%end%>
+                          <%end%>
+                        </div>
                     </div>
                 </div>
+
                 <div class="col-sm-6" style="" contenteditable="false">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Classes I Know</div>
-                        <div class="panel-body"><% if @userprofile.classes.blank? %>School is for chumps. If you'd like to know more, send me a message!<% end %>
-                        <% course = @userprofile.parse_database_tags(@userprofile.classes) %></div>
-                        <% course.each do |s|%>
-                          <%= s %>
-                        <%end%>
+                        <div class="panel-heading">
+                        Classes I can Tutor
+                        </div>
+                        <% if @userprofile.classes.blank? %>
+                          <div class="panel-body">
+                            School is for chumps. If you'd like to know more, send me a message!
+                          </div>
+                        <% end %>
+                        <div style="padding:5px">
+                          <% course = @userprofile.parse_database_tags(@userprofile.classes) %>
+                          <% course.each do |s|%>
+                            <% if s.blank? %>
+                            <% else %>
+                              <%= s %><%= "," %>
+                            <%end%>
+                          <%end%>
+                        </div>
                     </div>
                 </div>
               </div>

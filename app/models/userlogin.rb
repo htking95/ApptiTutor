@@ -1,13 +1,16 @@
 class Userlogin < ActiveRecord::Base
   # Include default devise modules. Others available are:
+
   # :confirmable, :lockable, :timeoutable and :omniauthable 
-  searchkick word_start: [:email, :skills, :classes, :price, :gender]
+  searchkick word_start: [:email, :skills, :classes, :price, :gender, :first, :last]
 
   def search_data 
     {
     email: email,
     skills: skills,
     classes: classes,
+    first: first,
+    last: last,
     price: price,
     gender: gender,
     ratings: ratings,

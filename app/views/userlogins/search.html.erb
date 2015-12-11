@@ -12,26 +12,43 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
 <style>
   .searchResult:hover {
     background-color: #D6D6D6;
-    color: red;
+  }
+  .searchResult {
+    box-shadow: 0px 1px 6px black; 
+    margin-bottom: 6px;
+    width: 80%; 
+    border: 1px solid black;
+    border-radius:10px;
+    background-color: white;
+    font-size: large;
+  }
+  .myPanel {
+    box-shadow: 0px 1px 6px black; 
+    margin-top: 5px;
+    margin-bottom: 6px;
+    width: 80%; 
+    border-radius:10px;
+    background-color: white;
+  }
+  .myPanel2 {
+    box-shadow: 0px 1px 6px black; 
+    margin-top: 5px;
+    margin-bottom: 6px;
   }
 </style>
 </head>
-<body style="background-color: #363636">
-  <div style="margin:25px;">
-    <div class="panel panel-default">
+<body>
+  <div class="container myPanel" style="">
+    <div class="panel panel-default myPanel2">
       <!-- Panel contents -->
       <div class="panel-heading" align="center" style="font-size:xx-large; background-color:#00A6DE; color: white; text-shadow: 2px 2px black">Search Results</div>
-      <div class="panel-body" style="background-color:#575757; border:1">
-        <p align="center" style="font-size: large; color:#00A6DE ">Find your the perfect tutor to match your schooling needs! Search above by class, name, email address, or skills!<br>
+      <div class="panel-body" style="background-color:#575757">
+        <p align="center" style="font-size: large; color:#00A6DE ">Find the perfect tutor to match your schooling needs! Search above by class, name, email address, or skills!<br>
         It's time to get ahead of the workload. We are here to help!</p>
       </div>
       
-      <div style="background-color: #575757; text-align:center; color:#00A6DE">
-        <div style="border-style: solid; border-width: 5px; border-color: black; margin: 0px 20px 0px 20px">
-          THIS IS GOING TO BE THE FILTER CONTAINER<br>
-          You will be able to apply filters to narrow your search <br>
-          <b>[] rating  [] age   [] gender   [] price</b><br>
-          (what do we mean by class? You search via class...)
+      <div style="background-color: #575757; text-align:center; color:#00A6DE; padding-bottom: 3px">
+        <div style="border-style: solid; border-width: 2px; border-color: black; margin: 0px 25% 5px 25%; border-radius:5px">
           <div class="filter">
             <%= form_tag search_userlogins_path, method: :get do %>
               <%= hidden_field_tag(:search, params[:search]) %>
@@ -51,28 +68,14 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
         </div>
       </div>
 
-      <!-- This is here for spacing purposes , class: "sex_check"-->
-      <div style="height:3px"></div>
-
       <!-- 
       - Maybe create a message for if there are no tutors?
-      - Maybe insert a send a message button? But maybe not, there is a message place on the profile page
-      - the little notice thing needs to be removed from the top of the user profile page!!! I fixed this
-      - Need to add age to the user profile page
-      - Need to fix font size of the rating inside the star on the user profile page
-      - try loading pictures...load a default picture
-      - add first name last name to the signup page
-      - edit the way we input price for the user profile
       -->
-
-
-      <!-- make if statements for the checkboxes, set ruby varaibles accordingly -->
-
 
       <% @userlogins.each do |userlogin| %>
         <!-- A container for each search result -->
-        <%# if userlogin.isTutor? %>
-            <div class="container searchResult" style=" box-shadow: 0px 1px 6px black; margin-bottom: 6px">
+        <% if userlogin.isTutor? %>
+            <div class="container searchResult">
               <a href="../pages/User_Profile/<%= userlogin.id %>">
                 <div class="row">
                   
@@ -84,17 +87,20 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
                     <div class="col-xs-9" style="font-size:x-large"><b>Name n/a</b></div>
                   <% end %>
                   
-                  <!--<div class="col-xs-4">&nbsp</div>-->
                   <div class="col-xs-9" style="font-size:large"><b><%= userlogin.email %></b></div>
                   
-                  <!--<div class="col-xs-4">&nbsp</div>-->
                   <div class="col-xs-3"><b>Gender:</b> <%= userlogin.gender %></div>
                   
-                  <div class="col-xs-3"><b>Age:</b><%= userlogin.calculate_age(userlogin.birthday) %></div>
+                  <div class="col-xs-3"><b>Age:</b> <%= userlogin.calculate_age(userlogin.birthday) %></div>
                   
-                  <div class="col-xs-3"><b>Price:</b> <%= userlogin.price %></div>
+                  <div class="col-xs-3"><b>Price:</b> 
+                  <% if userlogin.price? %>
+                      $<%= userlogin.price %>/hr
+                    <% else %>
+                      Not available
+                    <% end %>
+                  </div>
 
-                  <!--<div class="col-xs-4">&nbsp</div>-->
                   <div class="col-xs-9"><b>Classes:</b> <% courses = userlogin.parse_database_tags(userlogin.classes) %>
                         <% courses.each do |s|%>
                         <% if s.blank? %>
@@ -102,7 +108,6 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
                           <%= s %><%= "," %>
                         <%end%><%end%></div>
 
-                  <!--<div class="col-xs-4">&nbsp</div>-->
                   <div class="col-xs-9"><b>Skills:</b>
                    <% skills = userlogin.parse_database_tags(userlogin.skills) %>
                         <% skills.each do |s|%>
@@ -111,12 +116,11 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
                           <%= s %><%= "," %>
                         <%end%><%end%></div>
 
-                  <!--<div class="col-xs-4">&nbsp</div>-->
                   <div class="col-xs-9"><b>Bio:</b> <%= userlogin.aboutMe %></div>
                 </div>
               </a>
             </div>
-        <%# end %>
+        <% end %>
       <% end %>
 
 
