@@ -10,7 +10,6 @@
         $('[data-toggle="popover"]').popover(); 
         $("#selector").select2();
     });
-
     $('#messageModal').on('shown.bs.modal', function () {
       $('#messageModal').focus()
     });
@@ -20,7 +19,6 @@
     .button_to {
       display: inline;
     }
-
     .button_to div {
       display: inline;
     }
@@ -152,13 +150,21 @@
                 <div class="col-sm-6" style="" contenteditable="false">
                     <div class="panel panel-default">
                         <div class="panel-heading">My Skills</div>
-                        <div class="panel-body"><% if @userprofile.skills.blank? %>I swear I have mad skills. If you'd like to know more, send me a message!<% end %><%= @userprofile.skills %></div>
+                        <div class="panel-body"><% if @userprofile.skills.blank? %>I swear I have mad skills. If you'd like to know more, send me a message!<% end %>
+                        <% skilz = @userprofile.parse_database_tags(@userprofile.skills) %></div>
+                        <% skilz.each do |s|%>
+                          <%= s %>
+                        <%end%>
                     </div>
                 </div>
                 <div class="col-sm-6" style="" contenteditable="false">
                     <div class="panel panel-default">
                         <div class="panel-heading">Classes I Know</div>
-                        <div class="panel-body"><% if @userprofile.classes.blank? %>School is for chumps. If you'd like to know more, send me a message!<% end %><%= @userprofile.classes %></div>
+                        <div class="panel-body"><% if @userprofile.classes.blank? %>School is for chumps. If you'd like to know more, send me a message!<% end %>
+                        <% course = @userprofile.parse_database_tags(@userprofile.classes) %></div>
+                        <% course.each do |s|%>
+                          <%= s %>
+                        <%end%>
                     </div>
                 </div>
               </div>
@@ -232,4 +238,3 @@
 <% else %>
 <%=redTo404 %>
 <% end %>
-
