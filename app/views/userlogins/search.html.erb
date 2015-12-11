@@ -43,7 +43,7 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
       -->
       <% @userlogins.each do |userlogin| %>
         <!-- A container for each search result -->
-        <%# if userlogin.isTutor? %>
+        <% if userlogin.isTutor? %>
             <div class="container searchResult" style=" box-shadow: 0px 1px 6px black; margin-bottom: 6px">
               <a href="../pages/User_Profile/<%= userlogin.id %>">
                 <div class="row">
@@ -68,7 +68,7 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
                 </div>
               </a>
             </div>
-        <%# end %>
+        <% end %>
       <% end %>
 
 

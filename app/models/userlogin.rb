@@ -61,7 +61,12 @@ class Userlogin < ActiveRecord::Base
       total = total + rate.stars
       count = count + 1
     end
-    return total/count
+    if count != 0 then
+      return total/count
+    else
+      return 0
+    end
+    
   end
 
   def parse_database_tags(list)

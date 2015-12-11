@@ -70,7 +70,7 @@
             </div>
           
             <% if @userprofile.isTutor? %>
-            <% @userprofile.update_attributes(:ratings => @userprofile.average_rate) %>
+            <% @userprofile.update_column(:ratings, @userprofile.average_rate) %>
             <% if @userprofile != current_userlogin then %>
               <ul class="list-group">
                   <li class="list-group-item text-muted">Ratings</li>
@@ -177,7 +177,6 @@
                           <strong><%= r.name %></strong>
                           <br/>
                           <p><%= r.body %></p> 
-                          <p><%= link_to 'Delete', userreview_path(r), method: :delete, data: { confirm: 'Are you sure?' } %></p>
                         </div>
                       </div>
                     <% end %>
