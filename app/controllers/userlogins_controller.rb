@@ -14,7 +14,7 @@ class UserloginsController < ApplicationController
       if (params[:sort] == "price" && params[:sort].present?)
         @userlogins = Userlogin.search(params[:search], fields:[{email: :word_start}, {classes: :word_start}, {skills: :word_start}], order:[{price: :desc}])
       elsif (params[:sort] == "review" && params[:sort].present?)
-        @userlogins = Userlogin.search(params[:search], fields:[{email: :word_start}, {classes: :word_start}, {skills: :word_start}], order:[{: :desc}])
+        @userlogins = Userlogin.search(params[:search], fields:[{email: :word_start}, {classes: :word_start}, {skills: :word_start}], order:[{ratings: :desc}])
       else
         @userlogins = Userlogin.search(params[:search], fields:[{email: :word_start}, {classes: :word_start}, {skills: :word_start}])
           #where: {
