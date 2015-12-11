@@ -53,8 +53,9 @@
             <!--left col-->
             <ul class="list-group">
                 <li class="list-group-item text-muted" contenteditable="false" style="background-color:#F0F0F0; color: black">Profile</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= @userprofile.created_at.strftime("%F") %></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen </strong></span><%= @userprofile.last_sign_in_at.strftime("%F") %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= @userprofile.created_at.strftime("%D") %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span><%= @userprofile.last_sign_in_at.strftime("%D") %></li>
+
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender</strong></span><% if @userprofile.gender.blank? %>Not given<% end %>
                   <%= @userprofile.gender %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Age </strong></span><% if @userprofile.calculate_age(@userprofile.birthday) == 0%> Not given <% else %><%= @userprofile.calculate_age(@userprofile.birthday) %><% end %></li>
@@ -80,7 +81,8 @@
               <ul class="list-group">
 
                   <li class="list-group-item text-muted">Ratings</li>
-                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
+                  
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Clarity" data-content="How well was your tutor able to relay information?"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
                     
                     <%= rating_for @userprofile, "clarity", disable_after_rate: false, 
                     imdb_avg: true,
@@ -88,30 +90,36 @@
                     cancel_on: "blank.jpg" %>
 
                   </li>
-                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Knowledge </strong><span class="glyphicon glyphicon-info-sign"></span></a></span> 
+                  
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Knowledge" data-content="How well did your tutor know the information?"><strong class="">Knowledge </strong><span class="glyphicon glyphicon-info-sign"></span></a></span> 
 
                     <%= rating_for @userprofile, "knowledge", disable_after_rate: false, 
                     imdb_avg: true,
                     cancel_off: "blank.jpg",
-                    cancel_on: "blank.jpg" %></li>
-                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Politeness </strong><span class="glyphicon glyphicon-info-sign"></span></a></span> 
+                    cancel_on: "blank.jpg" %>
+                  </li>
+                  
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Politeness" data-content="How well did the tutor treat you?"><strong class="">Politeness </strong><span class="glyphicon glyphicon-info-sign"> </span></a></span>
 
                     <%= rating_for @userprofile, "politeness", disable_after_rate: false, 
                     imdb_avg: true,
                     cancel_off: "blank.jpg",
-                    cancel_on: "blank.jpg" %></li>
-                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Flexibility </strong><span class="glyphicon glyphicon-info-sign"></span></a></span> 
+                    cancel_on: "blank.jpg" %>
+                  </li>
+                  
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Flexibility" data-content="How well was your tutor able to work around your schedule?"><strong class="">Flexibility </strong><span class="glyphicon glyphicon-info-sign"></span></a></span> 
 
                     <%= rating_for @userprofile, "flexibility", disable_after_rate: false, 
                     imdb_avg: true,
                     cancel_off: "blank.jpg",
-                    cancel_on: "blank.jpg" %></li>
+                    cancel_on: "blank.jpg" %>
+                  </li>
+              
               </ul>
               <% else %>
-                    <ul class="list-group">
-
+                <ul class="list-group">
                   <li class="list-group-item text-muted">Ratings</li>
-                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Clarity" data-content="How well was your tutor able to relay information?"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
 
                     <div style="pointer-events: none;">                    
                     <%= rating_for @userprofile, "clarity", disable_after_rate: false, 
@@ -120,7 +128,7 @@
                     cancel_on: "blank.jpg" %>
                     </div>
                   </li>
-                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Knowledge </strong><span class="glyphicon glyphicon-info-sign"></span></a></span> 
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Knowledge" data-content="How well did your tutor know the information?"><strong class="">Knowledge </strong><span class="glyphicon glyphicon-info-sign"></span></a></span> 
                     <div style="pointer-events: none;">
                     <%= rating_for @userprofile, "knowledge", disable_after_rate: false, 
                     imdb_avg: true,
@@ -128,7 +136,7 @@
                     cancel_on: "blank.jpg" %>
                     </div>
                   </li>
-                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Politeness </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Politeness" data-content="How well did the tutor treat you?"><strong class="">Politeness </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
                     <div style="pointer-events: none;">
                     <%= rating_for @userprofile, "politeness", disable_after_rate: false, 
                     imdb_avg: true,
@@ -136,7 +144,7 @@
                     cancel_on: "blank.jpg" %>
                     </div>
                   </li>
-                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Flexibility </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Flexibility" data-content="How well was your tutor able to work around your schedule?"><strong class="">Flexibility </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
                     <div style="pointer-events: none;">
                     <%= rating_for @userprofile, "flexibility", disable_after_rate: false, 
                     imdb_avg: true,
@@ -163,42 +171,38 @@
                 <div class="col-sm-6" style="" contenteditable="false">
                     <div class="panel panel-default">
                         <div class="panel-heading">My Skills</div>
-                        <% if @userprofile.skills.blank? %>
-                        <div class="panel-body">
-                          I swear I have mad skills! If you'd like to know more, send me a message!
-                        </div>
-                        <% end %>
-                        <div style="padding:5px">
-                          <% skilz = @userprofile.parse_database_tags(@userprofile.skills) %>
-                          <% skilz.each do |s|%>
-                            <% if s.blank? %>
-                            <% else %>
-                              <%= s %><%= "," %>
+                        <div class="panel-body"><% if @userprofile.skills.blank? %>I swear I have mad skills. If you'd like to know more, send me a message!<% end %>
+                        <% skilz = @userprofile.parse_database_tags(@userprofile.skills) %>
+                        <% skilz.each do |s|%>
+                          <% if !s.blank? %>
+                            <%= form_tag(search_userlogins_path, method: "get", style: "display: inline") do %>
+                              <%= hidden_field_tag(:search, s)%>
+                              <%= submit_tag s, class: "btn btn-primary", style: "margin-bottom: 3px; margin-top: 2px" %>
                             <%end%>
-                          <%end%>
+                          <% end %>
+                        <%end%>
+
                         </div>
                     </div>
                 </div>
 
                 <div class="col-sm-6" style="" contenteditable="false">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                        Classes I can Tutor
-                        </div>
-                        <% if @userprofile.classes.blank? %>
-                          <div class="panel-body">
-                            School is for chumps. If you'd like to know more, send me a message!
-                          </div>
-                        <% end %>
-                        <div style="padding:5px">
-                          <% course = @userprofile.parse_database_tags(@userprofile.classes) %>
-                          <% course.each do |s|%>
-                            <% if s.blank? %>
-                            <% else %>
-                              <%= s %><%= "," %>
+                        <div class="panel-heading">Classes I Know</div>
+                        <div class="panel-body"><% if @userprofile.classes.blank? %>School is for chumps. If you'd like to know more, send me a message!<% end %>
+                        <% course = @userprofile.parse_database_tags(@userprofile.classes) %>
+                        <% course.each do |s|%>
+                          <% if !s.blank? %>
+                            
+                            <%= form_tag(search_userlogins_path, method: "get", style: "display: inline") do %>
+                              <%= hidden_field_tag(:search, s)%>
+                              <%= submit_tag s, class: "btn btn-primary", style: "margin-bottom: 3px; margin-top: 2px"%>
                             <%end%>
+                          
+                          <% end %>                        
                           <%end%>
-                        </div>
+                          </div>
+
                     </div>
                 </div>
               </div>
@@ -207,15 +211,26 @@
                   <div class="panel-body">
 
                     <% if @userreviews.blank? %>
-                      <h2> <strong>No reviews yet</strong><small><br> Be the first to write a review below! </small> </h2>
+                      <h2 class="text-center"> <strong>No reviews yet</strong><small><br> Be the first to write a review below! </small> </h2>
                     <% end %>
 
                     <% @userreviews.each do |r| %>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <strong><%= r.name %></strong>
-                          <br/>
-                          <p><%= r.body %></p> 
+                      <div style=" box-shadow: 0px 1px 6px black; margin-bottom: 6px; margin-top: 10px; border: 0px solid black; border-radius:10px">
+                        <div class="row">
+                      
+                          <div class="col-md-12">
+                            <div class="text-center" >
+                              <h4>
+                                <%= r.name %> <br/>                            
+                                <small><%= r.created_at.strftime("%D") %></small>
+                             </h4>
+
+                            </div>
+                            <p style="padding-left:20px; padding-right:20px;"><%= r.body %></p> 
+
+                          </div>
+                      
+
                         </div>
                       </div>
                     <% end %>
