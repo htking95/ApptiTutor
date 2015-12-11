@@ -2,6 +2,13 @@
 start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
 
 <head>
+<script>
+  $(document).ready(function() {
+    $('input.sex_check').on('change', function(){
+      $('input.sex_check').not(this).prop('checked', false);
+    });
+  });
+</script>
 <style>
   .searchResult:hover {
     background-color: #D6D6D6;
@@ -27,8 +34,15 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
           (what do we mean by class? You search via class...)
           <div class="filter">
             <%= form_tag search_userlogins_path, method: :get do %>
+              <%= hidden_field_tag(:search, params[:search]) %>
               <%= label_tag :price %>
-              <%= text_field_tag :price %>
+              <%= check_box_tag :sort, "price", params[:price], class: "sex_check"%>
+              <%= label_tag :ratings %>
+              <%= check_box_tag :sort, "rating", params[:ratings], class: "sex_check"%>
+              <%= label_tag :male %>
+              <%= check_box_tag :male, "Male", params[:male], class: "sex_check" %>
+              <%= label_tag :female %>
+              <%= check_box_tag :female, "Female", params[:female], class: "sex_check" %>
               <%= submit_tag "Search", name: nil%>
             <% end %>
           </div>
