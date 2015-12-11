@@ -74,6 +74,7 @@
           
             <% if @userprofile.isTutor? %>
             <% @userprofile.update_column(:ratings, @userprofile.average_rate) %>
+
             <% @userprofile.update_column(:age, @userprofile.calculate_age(@userprofile.birthday)) %>
             <% if @userprofile != current_userlogin then %>
               <ul class="list-group">
@@ -215,7 +216,6 @@
                           <strong><%= r.name %></strong>
                           <br/>
                           <p><%= r.body %></p> 
-                          <p><%= link_to 'Delete', userreview_path(r), method: :delete, data: { confirm: 'Are you sure?' } %></p>
                         </div>
                       </div>
                     <% end %>

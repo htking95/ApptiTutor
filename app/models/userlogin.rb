@@ -76,6 +76,7 @@ class Userlogin < ActiveRecord::Base
       total = total + rate.stars
       count = count + 1
     end
+
     if count != 0
       return total/count
     else
