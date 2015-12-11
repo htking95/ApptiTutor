@@ -6,9 +6,14 @@
 <% end %> 
 
   <script>
+  var aboutMe = "";
     $(document).ready(function(){
         $('[data-toggle="popover"]').popover(); 
         $("#selector").select2();
+        about_me = document.getElementById("about_me").getAttribute("data-about-me");
+        if(about_me != "" && about_me != null){
+          document.getElementById("about_me").innerHTML = about_me;
+        }
     });
 
     $('#messageModal').on('shown.bs.modal', function () {
@@ -73,7 +78,7 @@
             <% if @userprofile != current_userlogin then %>
               <ul class="list-group">
                   <li class="list-group-item text-muted">Ratings</li>
-                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></span>
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
                     
                     <%= rating_for @userprofile, "clarity", disable_after_rate: false, 
                     imdb_avg: true,
@@ -81,19 +86,19 @@
                     cancel_on: "blank.jpg" %>
 
                   </li>
-                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Knowledge </strong><span class="glyphicon glyphicon-info-sign"></span></span> 
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Knowledge </strong><span class="glyphicon glyphicon-info-sign"></span></a></span> 
 
                     <%= rating_for @userprofile, "knowledge", disable_after_rate: false, 
                     imdb_avg: true,
                     cancel_off: "blank.jpg",
                     cancel_on: "blank.jpg" %></li>
-                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Politeness </strong><span class="glyphicon glyphicon-info-sign"></span></span> 
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Politeness </strong><span class="glyphicon glyphicon-info-sign"></span></a></span> 
 
                     <%= rating_for @userprofile, "politeness", disable_after_rate: false, 
                     imdb_avg: true,
                     cancel_off: "blank.jpg",
                     cancel_on: "blank.jpg" %></li>
-                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Flexibility </strong><span class="glyphicon glyphicon-info-sign"></span></span> 
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Flexibility </strong><span class="glyphicon glyphicon-info-sign"></span></a></span> 
 
                     <%= rating_for @userprofile, "flexibility", disable_after_rate: false, 
                     imdb_avg: true,
@@ -103,7 +108,7 @@
               <% else %>
                     <ul class="list-group">
                   <li class="list-group-item text-muted">Ratings</li>
-                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></span>
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Clarity </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
                     <div style="pointer-events: none;">                    
                     <%= rating_for @userprofile, "clarity", disable_after_rate: false, 
                     imdb_avg: true,
@@ -111,7 +116,7 @@
                     cancel_on: "blank.jpg" %>
                     </div>
                   </li>
-                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Knowledge </strong><span class="glyphicon glyphicon-info-sign"></span></span> 
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Knowledge </strong><span class="glyphicon glyphicon-info-sign"></span></a></span> 
                     <div style="pointer-events: none;">
                     <%= rating_for @userprofile, "knowledge", disable_after_rate: false, 
                     imdb_avg: true,
@@ -119,7 +124,7 @@
                     cancel_on: "blank.jpg" %>
                     </div>
                   </li>
-                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Politeness </strong><span class="glyphicon glyphicon-info-sign"></span></span>
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Politeness </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
                     <div style="pointer-events: none;">
                     <%= rating_for @userprofile, "politeness", disable_after_rate: false, 
                     imdb_avg: true,
@@ -127,7 +132,7 @@
                     cancel_on: "blank.jpg" %>
                     </div>
                   </li>
-                  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Flexibility </strong><span class="glyphicon glyphicon-info-sign"></span></span>
+                  <li class="list-group-item text-right"><span class="pull-left"><a data-toggle="popover" data-trigger="hover" title="Popover Header" data-content="Some content inside the popover"><strong class="">Flexibility </strong><span class="glyphicon glyphicon-info-sign"></span></a></span>
                     <div style="pointer-events: none;">
                     <%= rating_for @userprofile, "flexibility", disable_after_rate: false, 
                     imdb_avg: true,
@@ -144,7 +149,8 @@
         <div class="col-sm-9" style="" contenteditable="false">
             <div class="panel panel-default">
                 <div class="panel-heading">About Me!</div>
-                <div class="panel-body"><% if @userprofile.aboutMe.blank? %>Who am i?? If you'd like to know more, send me a message!<% end %><%= @userprofile.aboutMe %></div>
+
+                <div class="panel-body" id="about_me" data-about-me="<%=@userprofile.aboutMe%>"><% if @userprofile.aboutMe.blank? %>Who am i?? If you'd like to know more, send me a message!<% end %></div>
             </div>
 
             <% if @userprofile.isTutor? %>

@@ -37,5 +37,6 @@ module ApptiTutor
     config.action_mailer.default_url_options = {
         host: "apptitutordevs@gmail.com"
     }
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
   end
 end

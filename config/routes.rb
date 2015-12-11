@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  mount Ckeditor::Engine => '/ckeditor'
   resources :userreviews
   #devise_for :sessions, :controllers => {:sessions => "sessions"}
   devise_for :userlogins, :controllers => {:userlogins => "userlogins", :sessions => "sessions"} do
