@@ -10,7 +10,7 @@ class Userlogin < ActiveRecord::Base
     skills: skills,
     classes: classes,
     first: first,
-    last: last
+    last: last,
     price: price,
     gender: gender,
     ratings: ratings,
