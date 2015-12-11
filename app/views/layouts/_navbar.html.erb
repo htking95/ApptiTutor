@@ -72,7 +72,9 @@ $(document).ready(function () {
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li> <a href="/pages/User_Profile/<%= current_userlogin.id %>">My Profile<span class="glyphicon pull-right glyphicon-user"></span></a></li>
+                <% if current_userlogin.isTutor? %>
+                  <li> <a href="/pages/User_Profile/<%= current_userlogin.id %>">My Profile<span class="glyphicon pull-right glyphicon-user"></span></a></li>
+                <% end %>
                 <li><a href="/mailbox/inbox">Messages<span class="glyphicon pull-right glyphicon-envelope"></span></a></li> 
                 <li><a href="/pages/Favorites">Favorites<span class="glyphicon pull-right glyphicon-star-empty"></span></a></li>
                 <li><a href="/userlogins/edit" data-no-turbolink="true">Edit Profile<span class="glyphicon pull-right glyphicon-pencil"></span></a></li>
