@@ -53,7 +53,7 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
 
       <% @userlogins.each do |userlogin| %>
         <!-- A container for each search result -->
-        <%# if userlogin.isTutor? %>
+        <% if userlogin.isTutor? %>
             <div class="container searchResult">
               <a href="../pages/User_Profile/<%= userlogin.id %>">
                 <div class="row">
@@ -66,17 +66,20 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
                     <div class="col-xs-9" style="font-size:x-large"><b>Name n/a</b></div>
                   <% end %>
                   
-                  <!--<div class="col-xs-4">&nbsp</div>-->
                   <div class="col-xs-9" style="font-size:large"><b><%= userlogin.email %></b></div>
                   
-                  <!--<div class="col-xs-4">&nbsp</div>-->
                   <div class="col-xs-3"><b>Gender:</b> <%= userlogin.gender %></div>
                   
-                  <div class="col-xs-3"><b>Age:</b><%= userlogin.calculate_age(userlogin.birthday) %></div>
+                  <div class="col-xs-3"><b>Age:</b> <%= userlogin.calculate_age(userlogin.birthday) %></div>
                   
-                  <div class="col-xs-3"><b>Price:</b> <%= userlogin.price %></div>
+                  <div class="col-xs-3"><b>Price:</b> 
+                  <% if userlogin.price? %>
+                      $<%= userlogin.price %>/hr
+                    <% else %>
+                      Not available
+                    <% end %>
+                  </div>
 
-                  <!--<div class="col-xs-4">&nbsp</div>-->
                   <div class="col-xs-9"><b>Classes:</b> <% courses = userlogin.parse_database_tags(userlogin.classes) %>
                         <% courses.each do |s|%>
                         <% if s.blank? %>
@@ -84,7 +87,6 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
                           <%= s %><%= "," %>
                         <%end%><%end%></div>
 
-                  <!--<div class="col-xs-4">&nbsp</div>-->
                   <div class="col-xs-9"><b>Skills:</b>
                    <% skills = userlogin.parse_database_tags(userlogin.skills) %>
                         <% skills.each do |s|%>
@@ -93,12 +95,11 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
                           <%= s %><%= "," %>
                         <%end%><%end%></div>
 
-                  <!--<div class="col-xs-4">&nbsp</div>-->
                   <div class="col-xs-9"><b>Bio:</b> <%= userlogin.aboutMe %></div>
                 </div>
               </a>
             </div>
-        <%# end %>
+        <% end %>
       <% end %>
 
 
