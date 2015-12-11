@@ -163,6 +163,10 @@ ActiveRecord::Schema.define(version: 20151204030055) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "questions1"
+    t.string   "questions2"
+    t.string   "answers1"
+    t.string   "answers2"
   end
 
   add_index "userlogins", ["email"], name: "index_userlogins_on_email", unique: true

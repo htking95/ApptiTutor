@@ -61,4 +61,17 @@ class Userlogin < ActiveRecord::Base
     now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
     end
   end
+
+  def parse_database_tags(list)
+    if(list.blank? || list == "[""]") then
+      return [""]
+    else
+      newlist = list.dup
+      newlist = newlist.gsub! '"',''
+      newlist.gsub! '[',''
+      newlist.gsub! ']',''
+      newlist = newlist.split(", ")
+      return newlist
+    end
+  end
 end
