@@ -1,15 +1,23 @@
 class Userlogin < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  searchkick word_start: [:aboutMe, :email, :skills, :classes]
+
+  # :confirmable, :lockable, :timeoutable and :omniauthable 
+  searchkick word_start: [:email, :skills, :classes, :price, :gender, :first, :last]
+
   def search_data 
     {
     email: email,
-    aboutMe: aboutMe,
     skills: skills,
-    classes: classes
+    classes: classes,
+    first: first,
+    last: last,
+    price: price,
+    gender: gender,
+    ratings: ratings,
+    age: age
   }
   end
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -19,7 +27,14 @@ class Userlogin < ActiveRecord::Base
   ratyrate_rateable 'overall', 'clarity', 'knowledge', 'politeness', 'flexibility'
   ratyrate_rater
 
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#"}, :default_url => "/images/:style/missing.png"
+  if Rails.env.development?
+    has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#"}, :default_url => "/images/:style/missing.png"
+  else
+    has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#"}, :default_url => "/images/:style/missing.png",
+                      :storage => :dropbox,
+                      :dropbox_credentials => Rails.root.join("config/dropbox.yml"),
+                      :path => ":style/:id_:filename"
+  end
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   
   acts_as_messageable
@@ -61,12 +76,12 @@ class Userlogin < ActiveRecord::Base
       total = total + rate.stars
       count = count + 1
     end
-    if count != 0 then
+
+    if count != 0
       return total/count
     else
       return 0
     end
-    
   end
 
   def parse_database_tags(list)
