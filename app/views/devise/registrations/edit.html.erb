@@ -1,3 +1,12 @@
+  <script type="text/javascript">$(document).ready(function() {
+    if ($('textarea').length > 0) {
+        var data = $('textarea');
+        $.each(data, function(i) {
+            CKEDITOR.replace(data[i].id);
+        });
+    }
+});</script>
+
 <div class="container-fluid">
   <h2>Edit <%= resource_name.to_s.humanize %></h2>
   <p class = "notice"><%= notice %></p>
@@ -58,10 +67,9 @@
     </div>
     <div class="form-group">
       <%= f.label :about_Me %><br />
-      <%= f.text_field :aboutMe, autocomplete: "off", class: "form-control" %>
+      <%= f.text_area :aboutMe, :class => 'ckeditor' %>
     </div>
 
-<% if current_userlogin.isTutor == true %>
     <div class="form-group">
       <%= f.label :classes %><br />
       <%= f.text_field :classes, autocomplete: "off", class: "form-control" %>
@@ -74,8 +82,7 @@
       <%= f.label :skills %><br />
       <%= f.text_field :skills, placeholder: "What skills do you have?", autocomplete: "off", class: "form-control"; %>
     </div>
-<% end %>
-
+    
     <div class="form-group">
       <%= f.label :birthday %>
       <div class ="row">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204030055) do
+ActiveRecord::Schema.define(version: 20151210020842) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -21,6 +21,22 @@ ActiveRecord::Schema.define(version: 20151204030055) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
 
   create_table "courses", force: :cascade do |t|
     t.string   "subject"
@@ -127,17 +143,69 @@ ActiveRecord::Schema.define(version: 20151204030055) do
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type"
 
-  create_table "security_questions", force: :cascade do |t|
-    t.string "locale", null: false
-    t.string "name",   null: false
-  end
-
   create_table "skills", force: :cascade do |t|
     t.string "skillCol"
   end
 
-# Could not dump table "userlogins" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", force: :cascade do |t|
+    t.string  "name"
+    t.integer "taggings_count", default: 0
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
+  create_table "userlogins", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.boolean  "isTutor"
+    t.boolean  "recieveReminders"
+    t.string   "profilePicture"
+    t.boolean  "isStudent"
+    t.string   "aboutMe"
+    t.string   "gender"
+    t.string   "favoriteTutors"
+    t.string   "classes"
+    t.string   "price"
+    t.string   "ratings"
+    t.string   "skills"
+    t.datetime "birthday"
+    t.string   "first"
+    t.string   "last"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "questions1"
+    t.string   "questions2"
+    t.string   "answers1"
+    t.string   "answers2"
+  end
+
+  add_index "userlogins", ["email"], name: "index_userlogins_on_email", unique: true
+  add_index "userlogins", ["reset_password_token"], name: "index_userlogins_on_reset_password_token", unique: true
 
   create_table "userreviews", force: :cascade do |t|
     t.string   "name"
