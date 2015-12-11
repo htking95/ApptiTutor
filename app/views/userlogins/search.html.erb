@@ -2,6 +2,13 @@
 start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
 
 <head>
+<script>
+  $(document).ready(function() {
+    $('input.sex_check').on('change', function(){
+      $('input.sex_check').not(this).prop('checked', false);
+    });
+  });
+</script>
 <style>
   .searchResult:hover {
     background-color: #D6D6D6;
@@ -25,13 +32,26 @@ start search on ubuntu with command: sudo /etc/init.d/elasticsearch start -->
           You will be able to apply filters to narrow your search <br>
           <b>[] rating  [] age   [] gender   [] price</b><br>
           (what do we mean by class? You search via class...)
-
-          <input type="checkbox" id="male"> Male
-          <input type="checkbox" id="female"> Female
+          <div class="filter">
+            <%= form_tag search_userlogins_path, method: :get do %>
+              <%= hidden_field_tag(:search, params[:search]) %>
+              <%= label_tag :price %>
+              <%= check_box_tag :sort, "price", params[:price], class: "sex_check"%>
+              <%= label_tag :ratings %>
+              <%= check_box_tag :sort, "rating", params[:ratings], class: "sex_check"%>
+              <%= label_tag :age %>
+              <%= check_box_tag :sort, "age", params[:age], class: "sex_check"%>
+              <%= label_tag :male %>
+              <%= check_box_tag :male, "Male", params[:male]%>
+              <%= label_tag :female %>
+              <%= check_box_tag :female, "Female", params[:female] %>
+              <%= submit_tag "Search", name: nil%>
+            <% end %>
+          </div>
         </div>
       </div>
 
-      <!-- This is here for spacing purposes -->
+      <!-- This is here for spacing purposes , class: "sex_check"-->
       <div style="height:3px"></div>
 
       <!-- 

@@ -73,6 +73,8 @@
             </div>
           
             <% if @userprofile.isTutor? %>
+            <% @userprofile.update_column(:ratings, @userprofile.average_rate) %>
+            <% @userprofile.update_column(:age, @userprofile.calculate_age(@userprofile.birthday)) %>
             <% if @userprofile != current_userlogin then %>
               <ul class="list-group">
                   <li class="list-group-item text-muted">Ratings</li>
